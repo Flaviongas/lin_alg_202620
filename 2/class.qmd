@@ -1,0 +1,337 @@
+---
+title: "Sistemas de Ecuaciones Lineales y Matrices"
+author: "Flavio Jara L."
+format:
+  revealjs:
+      transition: zoom
+      html-math-method: katex
+include-in-header:
+  - text: |
+      <style>
+      p,ul {
+        font-size: 0.70em;
+      }
+      </style>
+---
+
+## Sistemas de ecuaciones lineales y matrices
+En esta ayudantía resolveremos ejercicios de sistemas de ecuaciones lineales y matrices. Para esto utilizaremos la matriz ampliada junto con operaciones elementales por fila, el método de Gauss–Jordan para calcular la matriz inversa, y la relación $X = A^{-1}B$ para resolver la ecuación $AX = B$.
+
+Además, aplicaremos todo esto a problemas con contexto real: producción, cafetería, transporte y venta de entradas.
+
+## Ejercicio 1
+Resuelva los siguientes sistemas mediante operaciones elementales por filas. En cada caso, escriba la matriz ampliada y determine la naturaleza del conjunto solución.
+
+El sistema es:
+$$\begin{cases} x - y + z = 2 \\ 2x + y - z = 10 \\ x + y + z = 8 \end{cases}$$
+
+Escribimos la matriz ampliada, que incluye los coeficientes y la columna de los términos independientes:
+$$\left(\begin{array}{ccc|c} 1 & -1 & 1 & 2 \\ 2 & 1 & -1 & 10 \\ 1 & 1 & 1 & 8 \end{array}\right)$$
+
+##
+Para eliminar la primera columna, sumamos a la fila 2 un múltiplo de la fila 1 y hacemos lo mismo con la fila 3:
+$$F_2 \leftarrow F_2 - 2F_1, \qquad F_3 \leftarrow F_3 - F_1$$
+$$\left(\begin{array}{ccc|c} 1 & -1 & 1 & 2 \\ 0 & 3 & -3 & 6 \\ 0 & 2 & 0 & 6 \end{array}\right)$$
+
+Ahora trabajamos la segunda columna, normalizando el pivote y creando un cero debajo de él:
+$$F_2 \leftarrow \tfrac{1}{3}F_2, \qquad F_3 \leftarrow F_3 - 2F_2$$
+$$\left(\begin{array}{ccc|c} 1 & -1 & 1 & 2 \\ 0 & 1 & -1 & 2 \\ 0 & 0 & 2 & 2 \end{array}\right)$$
+
+##
+Finalmente normalizamos el último pivote y eliminamos hacia arriba:
+$$F_3 \leftarrow \tfrac{1}{2}F_3, \qquad F_1 \leftarrow F_1 + F_2 - F_3$$
+$$\left(\begin{array}{ccc|c} 1 & 0 & 0 & 4 \\ 0 & 1 & 0 & 3 \\ 0 & 0 & 1 & 1 \end{array}\right)$$
+
+De la matriz escalonada reducida leemos directamente la solución:
+$$\begin{cases} x = 4 \\ y = 3 \\ z = 1 \end{cases}$$
+
+**Verificación:** $4 - 3 + 1 = 2$,   $\,\,\,2(4) + 3 - 1 = 10\,\,\,$ y $\,\,\,4 + 3 + 1 = 8$.
+
+El sistema tiene **solución única**.
+
+## Ejercicio 1 (continuación)
+El sistema es:
+$$\begin{cases} x - 2y + 3z = 4 \\ 2x - 4y + 6z = 10 \\ -x + y - z = 0 \end{cases}$$
+
+##
+Observamos que la segunda ecuación tiene el doble de los coeficientes de la primera, pero su término independiente no es el doble ($2 \cdot 4 = 8 \neq 10$). Esto sugiere que el sistema **no tiene solución**.
+
+Escribimos la matriz ampliada:
+$$\left(\begin{array}{ccc|c} 1 & -2 & 3 & 4 \\ 2 & -4 & 6 & 10 \\ -1 & 1 & -1 & 0 \end{array}\right)$$
+
+##
+Reducimos eliminando la primera columna:
+$$F_2 \leftarrow F_2 - 2F_1, \qquad F_3 \leftarrow F_3 + F_1$$
+$$\left(\begin{array}{ccc|c} 1 & -2 & 3 & 4 \\ 0 & 0 & 0 & 2 \\ 0 & -1 & 2 & 4 \end{array}\right)$$
+
+La segunda fila representa la ecuación $0x + 0y + 0z = 2$, es decir, $0 = 2$, que es **falsa**.
+
+El sistema es **inconsistente** y, por lo tanto, **no tiene solución**.
+
+## El determinante de una matriz 2x2
+El **determinante** es un número asociado a una matriz cuadrada que nos permite decidir, entre otras cosas, si la matriz es invertible y si su sistema asociado tiene solución única.
+
+Para una matriz cuadrada, el determinante se calcula de la siguiente manera.
+
+#### Determinante de una matriz 2x2
+Si $A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$, su determinante se denota $\det(A)$ y se calcula como el producto de la diagonal principal menos el producto de la diagonal secundaria:
+$$\det(A) = \begin{vmatrix} a & b \\ c & d \end{vmatrix} = ad - bc$$
+
+## 
+#### Ejemplo
+Para $A = \begin{pmatrix} 2 & -3 \\ 1 & 4 \end{pmatrix}$:
+$$\det(A) = 2 \cdot 4 - (-3) \cdot 1 = 8 + 3 = 11$$
+
+Como $\det(A) \neq 0$, la matriz es invertible.
+
+##
+
+#### Relación con los sistemas de ecuaciones
+Para un sistema $AX = B$ con $A$ de tamaño $2\times 2$:
+
+- Si $\det(A) \neq 0$, la matriz es invertible y el sistema tiene **solución única**.
+- Si $\det(A) = 0$, la matriz no es invertible y el sistema tiene **ninguna o infinitas soluciones**.
+
+Este es el criterio que utilizaremos en el siguiente ejercicio, donde el determinante dependerá de un parámetro $k$.
+
+## Ejercicio 2
+Considere el sistema
+$$\begin{cases} x + ky = 2 \\ kx + y = 4 \end{cases}$$
+
+Determine los valores de $k$ para los cuales el sistema tiene solución única, infinitas soluciones o ninguna solución, justificando mediante operaciones elementales o estudio de rangos.
+
+##
+
+La matriz de coeficientes es $A = \begin{pmatrix} 1 & k \\ k & 1 \end{pmatrix}$, cuyo determinante es:
+$$\det(A) = \begin{vmatrix} 1 & k \\ k & 1 \end{vmatrix} = 1 - k^2$$
+
+Estudiamos los tres casos segun el valor de $k$.
+
+#### Solución única
+Si $1 - k^2 \neq 0$, es decir $k \neq \pm 1$, la matriz $A$ es invertible y el sistema tiene **solución única**.
+
+##
+
+#### Ninguna solución
+- Si $k = 1$: el sistema queda $x + y = 2$ y $x + y = 4$, que son ecuaciones contradictorias. Por lo tanto, **ninguna solución**.
+- Si $k = -1$: el sistema queda $x - y = 2$ y $-x + y = 4$. Multiplicando la segunda por $-1$ obtenemos $x - y = -4$, nuevamente contradictorio. Por lo tanto, **ninguna solución**.
+
+#### Infinitas soluciones
+No existe ningún valor de $k$ que produzca infinitas soluciones en este sistema.
+
+**Respuesta:** solución única para $k \neq \pm 1$; ninguna solución para $k = \pm 1$; nunca infinitas soluciones.
+
+## ¿Por qué escribir un sistema como $AX = B$?
+Escribir un sistema de ecuaciones en la forma matricial $AX = B$ es útil porque "factoriza" toda la información del sistema en **tres matrices**:
+
+- $A$: la **matriz de coeficientes**, que contiene los coeficientes de las incógnitas.
+- $X$: el **vector de variables**, que contiene las incógnitas.
+- $B$: el **vector de términos independientes**.
+
+##
+Esto nos permite:
+
+- Resolver el sistema con métodos matriciales como **Gauss–Jordan** sobre la matriz ampliada $(A \mid B)$.
+- Si $A$ es invertible, obtener directamente la solución con la fórmula $X = A^{-1}B$, sin reescribir el sistema cada vez.
+- Estudiar la **naturaleza** del conjunto solución (única, infinitas o ninguna) comparando los rangos de $A$ y de la matriz ampliada $(A \mid B)$.
+
+
+## Ejercicio 3
+Considere la ecuación matricial $AX = B$, donde
+$$A = \begin{pmatrix} 1 & 2 & -1 \\ 2 & 1 & 1 \\ 1 & -1 & 2 \end{pmatrix}, \qquad B = \begin{pmatrix} 4 \\ 5 \\ 1 \end{pmatrix}$$
+
+Realice cada uno de los siguientes pasos:
+
+- Escriba el sistema de ecuaciones lineales asociado.
+- Resuelva el sistema mediante reducción por filas.
+- Determine el vector $X$.
+- Compruebe su respuesta calculando $AX$.
+
+##  Sistema asociado
+La ecuación $AX = B$ corresponde al sistema:
+$$\begin{cases} x + 2y - z = 4 \\ 2x + y + z = 5 \\ x - y + 2z = 1 \end{cases}$$
+
+##
+#### Resolución por reducción por filas
+Escribimos la matriz ampliada:
+$$\left(\begin{array}{ccc|c} 1 & 2 & -1 & 4 \\ 2 & 1 & 1 & 5 \\ 1 & -1 & 2 & 1 \end{array}\right)$$
+
+Eliminamos la primera columna:
+$$F_2 \leftarrow F_2 - 2F_1, \qquad F_3 \leftarrow F_3 - F_1$$
+$$\left(\begin{array}{ccc|c} 1 & 2 & -1 & 4 \\ 0 & -3 & 3 & -3 \\ 0 & -3 & 3 & -3 \end{array}\right)$$
+
+##
+
+Las filas 2 y 3 son idénticas, lo que produce una fila de ceros. Esto significa que hay variables libres.
+
+$$
+F_2 \leftarrow -\tfrac{1}{3} F_2 \implies \left(\begin{array}{ccc|c} 1 & 2 & -1 & 4 \\ 0 & 1 & -1 & 1 \\ 0 & 0 & 0 & 0 \end{array}\right)
+$$
+
+##
+Eliminamos hacia arriba:
+$$F_1 \leftarrow F_1 - 2F_2 \implies \left(\begin{array}{ccc|c} 1 & 0 & 1 & 2 \\ 0 & 1 & -1 & 1 \\ 0 & 0 & 0 & 0 \end{array}\right)$$
+
+#### Vector $X$
+De la forma escalonada reducida obtenemos $x + z = 2$ y $y - z = 1$. Con $z = t$ variable libre:
+$$X = \begin{pmatrix} x \\ y \\ z \end{pmatrix} = \begin{pmatrix} 2 - t \\ 1 + t \\ t \end{pmatrix} = \begin{pmatrix} 2 \\ 1 \\ 0 \end{pmatrix} + t\begin{pmatrix} -1 \\ 1 \\ 1 \end{pmatrix}$$
+
+El sistema tiene **infinitas soluciones** con un grado de libertad.
+
+##
+#### Comprobación $AX = B$
+Verificamos con, por ejemplo, $t = 0$, es decir $X = (2, 1, 0)$:
+$$AX = \begin{pmatrix} 1 & 2 & -1 \\ 2 & 1 & 1 \\ 1 & -1 & 2 \end{pmatrix}\begin{pmatrix} 2 \\ 1 \\ 0 \end{pmatrix} = \begin{pmatrix} 1(2)+2(1)-1(0) \\ 2(2)+1(1)+1(0) \\ 1(2)-1(1)+2(0) \end{pmatrix} = \begin{pmatrix} 4 \\ 5 \\ 1 \end{pmatrix} = B$$
+
+Se cumple $AX = B$, por lo que la solución es correcta.
+
+## Matriz inversa mediante Gauss–Jordan
+Una matriz cuadrada $A$ tiene inversa $A^{-1}$ si se cumple que $AA^{-1} = A^{-1}A = I$.
+
+**Método de Gauss–Jordan:** aumentamos la matriz de coeficientes con la matriz identidad y reducimos hasta convertir el lado izquierdo en la identidad:
+$$(A \mid I) \longrightarrow (I \mid A^{-1})$$
+
+## Ejercicio 4
+Calcule la inversa de la matriz
+$$A = \begin{pmatrix} 1 & 2 & 0 \\ 0 & 1 & 1 \\ 1 & 0 & 1 \end{pmatrix}$$
+utilizando el método de Gauss–Jordan, y compruebe que $AA^{-1} = I$.
+
+##
+Formamos la matriz ampliada $(A \mid I)$:
+$$\left(\begin{array}{ccc|ccc} 1 & 2 & 0 & 1 & 0 & 0 \\ 0 & 1 & 1 & 0 & 1 & 0 \\ 1 & 0 & 1 & 0 & 0 & 1 \end{array}\right)$$
+
+Eliminamos debajo del primer pivote:
+$$F_3 \leftarrow F_3 - F_1 \implies \left(\begin{array}{ccc|ccc} 1 & 2 & 0 & 1 & 0 & 0 \\ 0 & 1 & 1 & 0 & 1 & 0 \\ 0 & -2 & 1 & -1 & 0 & 1 \end{array}\right)$$
+
+Creamos un cero debajo del segundo pivote:
+$$F_3 \leftarrow F_3 + 2F_2 \implies \left(\begin{array}{ccc|ccc} 1 & 2 & 0 & 1 & 0 & 0 \\ 0 & 1 & 1 & 0 & 1 & 0 \\ 0 & 0 & 3 & -1 & 2 & 1 \end{array}\right)$$
+
+##
+Normalizamos el tercer pivote:
+$$F_3 \leftarrow \tfrac{1}{3}F_3 \implies \left(\begin{array}{ccc|ccc} 1 & 2 & 0 & 1 & 0 & 0 \\ 0 & 1 & 1 & 0 & 1 & 0 \\ 0 & 0 & 1 & -\tfrac{1}{3} & \tfrac{2}{3} & \tfrac{1}{3} \end{array}\right)$$
+
+Ahora eliminamos hacia arriba para convertir el lado izquierdo en la identidad:
+$$F_2 \leftarrow F_2 - F_3, \qquad F_1 \leftarrow F_1 - 2F_2$$
+
+##
+Obtenemos:
+$$\left(\begin{array}{ccc|ccc} 1 & 0 & 0 & \tfrac{1}{3} & -\tfrac{2}{3} & \tfrac{2}{3} \\ 0 & 1 & 0 & \tfrac{1}{3} & \tfrac{1}{3} & -\tfrac{1}{3} \\ 0 & 0 & 1 & -\tfrac{1}{3} & \tfrac{2}{3} & \tfrac{1}{3} \end{array}\right)$$
+
+Por lo tanto, la inversa es:
+$$A^{-1} = \begin{pmatrix} \tfrac{1}{3} & -\tfrac{2}{3} & \tfrac{2}{3} \\ \tfrac{1}{3} & \tfrac{1}{3} & -\tfrac{1}{3} \\ -\tfrac{1}{3} & \tfrac{2}{3} & \tfrac{1}{3} \end{pmatrix} = \frac{1}{3}\begin{pmatrix} 1 & -2 & 2 \\ 1 & 1 & -1 \\ -1 & 2 & 1 \end{pmatrix}$$
+
+##
+**Comprobación de $AA^{-1} = I$:**
+$$AA^{-1} = \begin{pmatrix} 1 & 2 & 0 \\ 0 & 1 & 1 \\ 1 & 0 & 1 \end{pmatrix} \cdot \frac{1}{3}\begin{pmatrix} 1 & -2 & 2 \\ 1 & 1 & -1 \\ -1 & 2 & 1 \end{pmatrix}$$
+
+Calculamos fila por fila:
+- Fila 1: $\tfrac{1}{3}(1 + 2, \; -2 + 2, \; 2 - 2) = (1, 0, 0)$
+- Fila 2: $\tfrac{1}{3}(1 - 1, \; 1 + 2, \; -1 + 1) = (0, 1, 0)$
+- Fila 3: $\tfrac{1}{3}(1 - 1, \; -2 + 2, \; 2 + 1) = (0, 0, 1)$
+
+Luego $AA^{-1} = I$. Correcto.
+
+## Ejercicio 5
+Utilice la matriz inversa para resolver $AX = B$, donde
+$$A = \begin{pmatrix} 2 & 1 & 0 \\ 1 & 2 & 1 \\ 0 & 1 & 2 \end{pmatrix}, \qquad B = \begin{pmatrix} 4 \\ 8 \\ 8 \end{pmatrix}$$
+
+Es decir, determine $A^{-1}$ y posteriormente utilice $X = A^{-1}B$.
+
+##
+Calculamos $A^{-1}$ con el método de Gauss–Jordan $(A \mid I) \to (I \mid A^{-1})$. Luego de reducir se obtiene:
+$$A^{-1} = \frac{1}{4}\begin{pmatrix} 3 & -2 & 1 \\ -2 & 4 & -2 \\ 1 & -2 & 3 \end{pmatrix}$$
+
+Ahora usamos la fórmula $X = A^{-1}B$:
+$$X = \frac{1}{4}\begin{pmatrix} 3 & -2 & 1 \\ -2 & 4 & -2 \\ 1 & -2 & 3 \end{pmatrix}\begin{pmatrix} 4 \\ 8 \\ 8 \end{pmatrix}$$
+
+##
+Realizamos el producto matricial:
+$$X = \frac{1}{4}\begin{pmatrix} 3(4) - 2(8) + 1(8) \\ -2(4) + 4(8) - 2(8) \\ 1(4) - 2(8) + 3(8) \end{pmatrix} = \frac{1}{4}\begin{pmatrix} 4 \\ 8 \\ 12 \end{pmatrix} = \begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}$$
+
+La solución es $X = (1, 2, 3)$. Comprobamos: $AX = (2 + 2, \; 1 + 4 + 3, \; 2 + 6) = (4, 8, 8) = B$. Se cumple.
+
+## Ejercicio 6
+Considere el sistema homogéneo
+$$\begin{cases} x + 2y - z = 0 \\ 2x + 4y - 2z = 0 \\ -x - 2y + z = 0 \end{cases}$$
+
+Escríbalo en la forma $AX = 0$, reduzca la matriz de coeficientes, determine el conjunto solución, indique si existen soluciones no triviales y escriba la solución en forma paramétrica.
+
+##
+#### Forma matricial
+El sistema se escribe como $AX = 0$ con:
+$$A = \begin{pmatrix} 1 & 2 & -1 \\ 2 & 4 & -2 \\ -1 & -2 & 1 \end{pmatrix}$$
+
+#### Reducción de la matriz de coeficientes
+$$F_2 \leftarrow F_2 - 2F_1, \qquad F_3 \leftarrow F_3 + F_1 \implies \begin{pmatrix} 1 & 2 & -1 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}$$
+
+El rango es 1, por lo que hay **dos variables libres**.
+
+##
+#### Conjunto solución
+De $x + 2y - z = 0$ despejamos $x = z - 2y$.
+
+####  Solución paramétrica
+Con $y = s$ y $z = t$ como parámetros:
+$$X = \begin{pmatrix} z - 2y \\ y \\ z \end{pmatrix} = \begin{pmatrix} t - 2s \\ s \\ t \end{pmatrix} = s\begin{pmatrix} -2 \\ 1 \\ 0 \end{pmatrix} + t\begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}$$
+
+**¿Existen soluciones no triviales?** Sí, existen infinitas soluciones no triviales, además de la trivial $X = 0$, que se obtiene con $s = t = 0$. Esto ocurre porque hay variables libres.
+
+## Ejercicio 7: producción
+Una fábrica produce sillas, mesas y estanterías. Cada producto requiere horas de corte, ensamble y pintura:
+
+- Para fabricar una silla se necesitan 1 hora de corte, 1 de ensamble y 1 de pintura.
+- Para una mesa, 2 horas de corte, 1 de ensamble y 2 de pintura.
+- Para una estantería, 3 horas de corte, 2 de ensamble y 1 de pintura.
+
+La fábrica dispone de 35 horas de corte, 25 horas de ensamble y 25 horas de pintura. Determine cuántas unidades de cada producto pueden fabricarse si se utilizan todas las horas disponibles.
+
+##
+
+Realice cada uno de los siguientes pasos:
+
+- Defina las incógnitas.
+- Plantee el sistema de ecuaciones.
+- Escríbalo en forma matricial $AX = B$.
+
+##
+#### Incógnitas
+- $s$: número de sillas a fabricar.
+- $m$: número de mesas a fabricar.
+- $e$: número de estanterías a fabricar.
+
+#### Sistema de ecuaciones
+Cada recurso da una ecuación. La suma de las horas de corte utilizadas debe ser 35, las de ensamble 25 y las de pintura 25:
+$$\begin{cases} s + 2m + 3e = 35 \quad (\text{corte}) \\ s + m + 2e = 25 \quad (\text{ensamble}) \\ s + 2m + e = 25 \quad (\text{pintura}) \end{cases}$$
+
+##
+#### Forma matricial $AX = B$
+$$A = \begin{pmatrix} 1 & 2 & 3 \\ 1 & 1 & 2 \\ 1 & 2 & 1 \end{pmatrix}, \qquad X = \begin{pmatrix} s \\ m \\ e \end{pmatrix}, \qquad B = \begin{pmatrix} 35 \\ 25 \\ 25 \end{pmatrix}$$
+
+#### Resolución
+Escribimos la matriz ampliada y reducimos:
+$$\left(\begin{array}{ccc|c} 1 & 2 & 3 & 35 \\ 1 & 1 & 2 & 25 \\ 1 & 2 & 1 & 25 \end{array}\right)$$
+
+##
+$$
+F_2 \leftarrow F_2 - F_1, \qquad F_3 \leftarrow F_3 - F_1 \implies \left(\begin{array}{ccc|c} 1 & 2 & 3 & 35 \\ 0 & -1 & -1 & -10 \\ 0 & 0 & -2 & -10 \end{array}\right)
+$$
+
+$$
+F_2 \leftarrow -F_2, \qquad F_3 \leftarrow -\tfrac{1}{2}F_3 \implies \left(\begin{array}{ccc|c} 1 & 2 & 3 & 35 \\ 0 & 1 & 1 & 10 \\ 0 & 0 & 1 & 5 \end{array}\right)
+$$
+
+##
+De la tercera fila se obtiene $e = 5$. Eliminando hacia arriba:
+$$F_2 \leftarrow F_2 - F_3 \implies m = 5$$
+$$F_1 \leftarrow F_1 - 2F_2 - 3F_3 \implies s = 10$$
+
+**Solución:** se pueden fabricar $s = 10$ sillas, $m = 5$ mesas y $e = 5$ estanterías, utilizando todas las horas disponibles.
+
+**Verificación con todas las horas:**
+- Corte: $10 + 2(5) + 3(5) = 35$
+- Ensamble: $10 + 5 + 2(5) = 25$
+- Pintura: $10 + 2(5) + 5 = 25$
+
+Todas las horas disponibles se utilizan por completo.
+
+# Gracias por su atención
