@@ -1,0 +1,266 @@
+---
+title: "Segunda Preparación Evaluación Regular I"
+author: "Flavio Jara L."
+format:
+  revealjs:
+      transition: zoom
+      html-math-method: katex
+include-in-header:
+  - text: |
+      <style>
+      p,ul {
+        font-size: 0.70em;
+      }
+      </style>
+---
+
+## Segunda Preparación Evaluación Regular I
+Repasaremos todo el temario con ejercicios cortos y un problema aplicado, integrando las clases 1 a 3 y dejando tiempo para consultas.
+
+- Operaciones matriciales y ecuaciones, determinantes e invertibilidad con parámetro
+- Sistemas, matriz aumentada, Gauss/Gauss-Jordan, clasificación y problema contextualizado
+
+## Ejercicio 1
+Sean $M = \begin{pmatrix} 2 & 3 \\ 1 & 2 \end{pmatrix}$, $N_a = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$, $P_a = \begin{pmatrix} 6 & 7 \\ 3 & 5 \end{pmatrix}$.
+
+Realice cada uno de los siguientes pasos:
+
+- Despeje $X$ en $MX + N_a = P_a$ por el lado correcto.
+- Despeje $X$ en $XM + N_b = P_b$ con $N_b = \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}$, $P_b = \begin{pmatrix} 6 & 9 \\ 5 & 8 \end{pmatrix}$, y explique la diferencia.
+
+## 
+Primero vemos que:
+$\det(M)=1\neq0$.
+
+A partir de eso, sacamos la inversa $M^{-1}=\begin{pmatrix} 2 & -3 \\ -1 & 2 \end{pmatrix}$ y $MM^{-1}=I$.
+
+#### Despeje por izquierda
+ $$MX+N_a=P_a$$
+
+$$MX=P_a-N_a$$
+
+$$X=M^{-1}(P_a-N_a)$$
+
+## Despeje por derecha
+$$XM+N_b=P_b$$ $$XM=P_b-N_b$$ $$X=(P_b-N_b)M^{-1}$$
+
+El producto no es conmutativo, $M^{-1}Q\neq QM^{-1}$ en general.
+
+## 
+#### Apartado (a) por izquierda
+$$P_a-N_a=\begin{pmatrix}5&7\\3&4\end{pmatrix}$$
+
+$$X=\begin{pmatrix}2&-3\\-1&2\end{pmatrix}\begin{pmatrix}5&7\\3&4\end{pmatrix}=\begin{pmatrix}1&2\\1&1\end{pmatrix}$$
+
+Comprobación: $MX_a+N_a=P_a$.
+
+#### Apartado (b) por derecha
+$$P_b-N_b=\begin{pmatrix}5&8\\4&7\end{pmatrix}$$
+
+$$X=\begin{pmatrix}5&8\\4&7\end{pmatrix}\begin{pmatrix}2&-3\\-1&2\end{pmatrix}=\begin{pmatrix}2&1\\1&2\end{pmatrix}$$
+
+Comprobación: $X_bM+N_b=P_b$. Con la misma $M$, $X_a\neq X_b$.
+
+## Ejercicio 2
+Calcule el determinante de $D=\begin{vmatrix}3&1&2\\0&2&1\\1&1&3\end{vmatrix}$ por cofactores y determine los $k$ con los que $A(k)=\begin{pmatrix}k&2&2\\1&k&1\\2&1&k\end{pmatrix}$ es invertible.
+
+
+## 
+#### Cálculo de $D$
+Por la segunda fila (tiene un cero):
+
+$$D=2\begin{vmatrix}3&2\\1&3\end{vmatrix}-1\begin{vmatrix}3&1\\1&1\end{vmatrix}$$
+
+$$=2(9-2)-(3-1)=14-2=12\neq0$$
+
+Por lo tanto la matriz es invertible.
+
+#### Determinante con parámetro
+Por primera fila:
+
+$$\det(A(k))=k\begin{vmatrix}k&1\\1&k\end{vmatrix}-2\begin{vmatrix}1&1\\2&k\end{vmatrix}+2\begin{vmatrix}1&k\\2&1\end{vmatrix}$$
+
+$$=k(k^2-1)-2(k-2)+2(1-2k)$$
+
+$$=k^3-7k+6$$
+
+## 
+
+
+
+### Teorema de la raíz racional
+Podemos probar con los siguientes candidatos a raíces:
+$$\pm1,\;\pm2,\;\pm3,\;\pm6$$
+
+¿Por qué esos candidatos? Por el teorema de la raíz racional: si un polinomio con coeficientes enteros tiene una raíz racional $p/q$ en forma irreducible, entonces $p$ divide al término independiente y $q$ divide al coeficiente líder.
+
+Aquí $p(k)=k^3-7k+6$ tiene coeficientes enteros y coeficiente líder $1$, así que toda raíz racional debe ser entera y dividir a $6$. Por eso los únicos candidatos racionales son los divisores de $6$
+
+## 
+Evaluamos $p(k)$ en cada candidato hasta hallar una raíz. Probamos:
+$$p(1)=1-7+6=0,\quad p(2)=8-14+6=0,\quad p(-3)=-27+21+6=0$$
+
+Ya tenemos una raíz. Con $k=1$ factorizamos:
+
+$$
+\begin{array}{c|cccc}
+1&1&0&-7&6\\&&1&1&-6\\\hline&1&1&-6&0
+\end{array}
+$$
+
+
+El cociente es $q(k)=k^2+k-6$.
+
+Por lo que $p(k)=k^3-7k+6 = (k^2 + k - 6) (x-1)$
+
+
+## 
+Para factorizar $q(k)$ buscamos dos números que multipliquen $-6$ y sumen $1$:
+
+$$q(k)=k^2+k-6=(k+3)(k-2)$$
+
+Por lo tanto $q(k)=(k-2)(k+3)$.
+
+Juntando con el factor $(k-1)$ de Ruffini:
+
+$$\det(A(k))=(k-1)\,q(k)=(k-1)(k-2)(k+3)$$
+
+ $(k-1)(k-2)(k+3)=k^3-7k+6$ (coincide con el cálculo inicial)
+
+## 
+#### Conclusión de invertibilidad
+$A(k)$ invertible $\iff \det\neq0$:
+
+$$A(k) \text{ invertible} \iff k\neq1,\;k\neq2,\;k\neq-3$$
+
+No invertible para $k\in\{-3,1,2\}$, mismo criterio que decide si $A(k)X=B$ tiene solución única.
+
+## Tipos de sistemas
+Todo sistema $AX=B$ se estudia con $(A\mid B)$.
+
+- Compatible determinado: $\operatorname{rg}(A)=\operatorname{rg}(A\mid B)=n$, solución única; si $n\times n$, $\det(A)\neq0$.
+- Compatible indeterminado: $\operatorname{rg}(A)=\operatorname{rg}(A\mid B)<n$, infinitas soluciones con variable libre y forma paramétrica.
+- Incompatible: $\operatorname{rg}(A)\neq\operatorname{rg}(A\mid B)$, ninguna solución; aparece fila $[0\cdots0\mid b\neq0]$ ($0=b$).
+
+##
+
+::: {style="text-align:center; width:100%; margin-left: auto; margin-right: auto;"}
+```{mermaid}
+flowchart TD
+    S["Sistema AX = B"] --> C{"rg A = rg Ab ?"}
+    C -->|Sí| Comp["Compatible"]
+    C -->|No| Inc["Incompatible<br>0 = b distinto 0"]
+    Comp --> R{"rg = n ?"}
+    R -->|Sí| Det["Determinado<br>única solución"]
+    R -->|No| Ind["Indeterminado<br>variable libre"]
+```
+:::
+
+
+## Ejercicio 3
+Resuelva por matriz aumentada: $\begin{cases}x+y+2z=9\\2x+y+z=8\\x+2y+z=7\end{cases}$
+
+Realice cada uno de los siguientes pasos:
+
+- Escriba la matriz aumentada.
+- Reduzca a escalonada reducida y clasifique y lea la solución.
+
+## 
+Escribimos la matriz aumentada:
+$$\left(\begin{array}{ccc|c}1&1&2&9\\2&1&1&8\\1&2&1&7\end{array}\right)$$
+
+Eliminamos la primera columna, fila 2:
+$$F_2 \leftarrow F_2 -2F_1 \implies \left(\begin{array}{ccc|c}1&1&2&9\\0&-1&-3&-10\\1&2&1&7\end{array}\right)$$
+
+Eliminamos la primera columna, fila 3:
+$$F_3 \leftarrow F_3 - F_1 \implies \left(\begin{array}{ccc|c}1&1&2&9\\0&-1&-3&-10\\0&1&-1&-2\end{array}\right)$$
+
+## 
+Normalizamos el segundo pivote:
+$$F_2 \leftarrow -F_2 \implies \left(\begin{array}{ccc|c}1&1&2&9\\0&1&3&10\\0&1&-1&-2\end{array}\right)$$
+
+Creamos cero debajo del segundo pivote:
+$$F_3 \leftarrow F_3 - F_2 \implies \left(\begin{array}{ccc|c}1&1&2&9\\0&1&3&10\\0&0&-4&-12\end{array}\right)$$
+
+Normalizamos el tercer pivote:
+$$F_3 \leftarrow -\dfrac{1}{4}F_3 \implies \left(\begin{array}{ccc|c}1&1&2&9\\0&1&3&10\\0&0&1&3\end{array}\right)$$
+
+## 
+Eliminamos hacia arriba, fila 2:
+$$F_2 \leftarrow F_2 -3F_3 \implies \left(\begin{array}{ccc|c}1&1&2&9\\0&1&0&1\\0&0&1&3\end{array}\right)$$
+
+Eliminamos hacia arriba, fila 1 con $F_3$:
+$$F_1 \leftarrow F_1 -2F_3 \implies \left(\begin{array}{ccc|c}1&1&0&3\\0&1&0&1\\0&0&1&3\end{array}\right)$$
+
+Eliminamos el último elemento sobre el pivote:
+$$F_1 \leftarrow F_1 - F_2 \implies \left(\begin{array}{ccc|c}1&0&0&2\\0&1&0&1\\0&0&1&3\end{array}\right)$$
+
+##
+
+De la forma escalonada reducida leemos $x=2$, $y=1$, $z=3$.
+El rango es $3$ por lo que el sistema es compatible determinado.
+
+
+## Ejercicio 4
+Considere $\begin{cases}x+2y+z=4\\2x+4y+2z=9\\x+y+z=5\end{cases}$ y $A=\begin{pmatrix}1&2&1\\0&1&2\\2&0&1\end{pmatrix}$ con $B=\begin{pmatrix}8\\7\\9\end{pmatrix}$.
+
+Realice cada uno de los siguientes pasos:
+
+- Reduzca la aumentada del sistema, clasifique.
+- Calcule $A^{-1}$ por Gauss-Jordan y resuelva $AX=B$.
+
+## 
+#### Clasificación del sistema
+Matriz aumentada:
+$$\left(\begin{array}{ccc|c}1&2&1&4\\2&4&2&9\\1&1&1&5\end{array}\right)$$
+
+Eliminamos fila 2:
+$$F_2 \leftarrow F_2 -2F_1 \implies \left(\begin{array}{ccc|c}1&2&1&4\\0&0&0&1\\1&1&1&5\end{array}\right)$$
+
+Eliminamos fila 3:
+$$F_3 \leftarrow F_3 - F_1 \implies \left(\begin{array}{ccc|c}1&2&1&4\\0&0&0&1\\0&-1&0&1\end{array}\right)$$
+
+##
+
+La fila $[0\;0\;0\mid1]$ es $0=1$, lo cual es imposible. 
+$$\operatorname{rg}(A)=2\neq3=\operatorname{rg}(A\mid B)$$ por lo que el sistema es incompatible, sin solución, tal como indica el diagrama.
+
+## 
+#### Inversa por Gauss-Jordan
+Formamos $(A\mid I)$:
+$$\left(\begin{array}{ccc|ccc}1&2&1&1&0&0\\0&1&2&0&1&0\\2&0&1&0&0&1\end{array}\right)$$
+
+Eliminamos debajo del primer pivote:
+$$F_3 \leftarrow F_3 -2F_1 \implies \left(\begin{array}{ccc|ccc}1&2&1&1&0&0\\0&1&2&0&1&0\\0&-4&-1&-2&0&1\end{array}\right)$$
+
+Creamos cero debajo del segundo pivote:
+$$F_3 \leftarrow F_3 +4F_2 \implies \left(\begin{array}{ccc|ccc}1&2&1&1&0&0\\0&1&2&0&1&0\\0&0&7&-2&4&1\end{array}\right)$$
+
+##
+
+Normalizamos el tercer pivote:
+$$F_3 \leftarrow \dfrac{1}{7}F_3 \implies \left(\begin{array}{ccc|ccc}1&2&1&1&0&0\\[6pt]0&1&2&0&1&0\\[6pt]0&0&1&-\tfrac{2}{7}&\tfrac{4}{7}&\tfrac{1}{7}\end{array}\right)$$
+
+## 
+Eliminamos hacia arriba con $F_3$ en fila 2:
+$$F_2 \leftarrow F_2 -2F_3 \implies \left(\begin{array}{ccc|ccc}1&2&1&1&0&0\\[6pt]0&1&0&\tfrac{4}{7}&-\tfrac{1}{7}&-\tfrac{2}{7}\\[6pt]0&0&1&-\tfrac{2}{7}&\tfrac{4}{7}&\tfrac{1}{7}\end{array}\right)$$
+
+Eliminamos hacia arriba con $F_3$ en fila 1:
+$$F_1 \leftarrow F_1 - F_3 \implies \left(\begin{array}{ccc|ccc}1&2&0&\tfrac{9}{7}&-\tfrac{4}{7}&-\tfrac{1}{7}\\[6pt]0&1&0&\tfrac{4}{7}&-\tfrac{1}{7}&-\tfrac{2}{7}\\[6pt]0&0&1&-\tfrac{2}{7}&\tfrac{4}{7}&\tfrac{1}{7}\end{array}\right)$$
+
+Eliminamos el elemento sobre el segundo pivote:
+$$F_1 \leftarrow F_1 -2F_2 \implies \left(\begin{array}{ccc|ccc}1&0&0&\tfrac{1}{7}&-\tfrac{2}{7}&\tfrac{3}{7}\\[6pt]0&1&0&\tfrac{4}{7}&-\tfrac{1}{7}&-\tfrac{2}{7}\\[6pt]0&0&1&-\tfrac{2}{7}&\tfrac{4}{7}&\tfrac{1}{7}\end{array}\right)$$
+
+##
+
+Por lo tanto $A^{-1}=\dfrac{1}{7}\begin{pmatrix}1&-2&3\\4&-1&-2\\-2&4&1\end{pmatrix}$, $\det(A)=7\neq0$.
+
+## 
+#### Resolución de $AX=B$
+$$X=A^{-1}B=\dfrac{1}{7}\begin{pmatrix}1&-2&3\\4&-1&-2\\-2&4&1\end{pmatrix}\begin{pmatrix}8\\7\\9\end{pmatrix}$$
+
+$$=\dfrac{1}{7}\begin{pmatrix}8-14+27\\32-7-18\\-16+28+9\end{pmatrix}=\begin{pmatrix}3\\1\\3\end{pmatrix}$$
+
+Comprobación $AX=B$ se cumple. Con $\det\neq0$ el sistema es compatible determinado.
+
+# Gracias por su atención
