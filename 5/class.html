@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="class_files/libs/clipboard/clipboard.min.js"></script>
+<script src="class_files/libs/quarto-html/tabby.min.js"></script>
+<script src="class_files/libs/quarto-html/popper.min.js"></script>
+<script src="class_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="class_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="class_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="class_files/libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.34">
+
+  <meta name="author" content="Flavio Jara L.">
+  <title>Producto interior, norma, ángulos y aplicaciones</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="class_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="class_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="class_files/libs/revealjs/dist/theme/quarto-f563837468303362081e247dddd440d0.css">
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+  <link href="class_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="class_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="class_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="class_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <style>
+  p,ul {
+    font-size: 0.70em;
+  }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Producto interior, norma, ángulos y aplicaciones</h1>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Flavio Jara L. 
+</div>
+</div>
+</div>
+
+</section>
+<section id="objetivos-de-la-clase" class="slide level2">
+<h2>Objetivos de la clase</h2>
+<p>En esta clase estudiaremos los vectores en <span class="math inline">R^n</span> y las operaciones que permiten medir longitudes, ángulos y direcciones. Al finalizar, el estudiante deberá ser capaz de:</p>
+<ul>
+<li>Representar y operar vectores en <span class="math inline">R^2</span>, <span class="math inline">R^3</span> y <span class="math inline">R^n</span>.</li>
+<li>Calcular e interpretar el producto interior.</li>
+<li>Determinar la norma, el ángulo y los vectores unitarios.</li>
+<li>Calcular la proyección de un vector sobre otro y descomponer ortogonalmente.</li>
+<li>Aplicar el producto cruz en <span class="math inline">R^3</span>.</li>
+<li>Reconocer estas herramientas en aplicaciones de computación y en RAG.</li>
+</ul>
+</section>
+<section id="vectores-en-rn" class="slide level2">
+<h2>Vectores en Rn</h2>
+<p>Un vector en <span class="math inline">R^n</span> es una <span class="math inline">n</span>-upla ordenada de números reales: <span class="math display">u=(u_1,u_2,\dots,u_n), \qquad u_i\in R.</span> Por lo tanto, <span class="math display">R^n=\{(u_1,u_2,\dots,u_n): u_i\in R\}.</span> Ejemplos:</p>
+<ul>
+<li><span class="math inline">(2,-1)\in R^2</span>.</li>
+<li><span class="math inline">(1,0,3)\in R^3</span>.</li>
+<li><span class="math inline">(2,-1,4,0,5)\in R^5</span>.</li>
+</ul>
+</section>
+<section id="operaciones-entre-vectores" class="slide level2">
+<h2>Operaciones entre vectores</h2>
+<p>Sean <span class="math inline">u=(u_1,\dots,u_n)</span> y <span class="math inline">v=(v_1,\dots,v_n)</span>. La suma se define componente a componente: <span class="math display">u+v=(u_1+v_1,\dots,u_n+v_n),</span> y la multiplicación por escalar, con <span class="math inline">\lambda\in R</span>: <span class="math display">\lambda u=(\lambda u_1,\dots,\lambda u_n).</span></p>
+<h4 id="clausura">Clausura</h4>
+<p>Si <span class="math inline">u,v\in R^n</span>, entonces <span class="math inline">u+v\in R^n</span>; y si <span class="math inline">\lambda\in R</span>, entonces <span class="math inline">\lambda u\in R^n</span>. Las operaciones producen nuevamente elementos del mismo conjunto. Esta idea será fundamental al estudiar espacios vectoriales.</p>
+</section>
+<section id="aplicaciones" class="slide level2">
+<h2>Aplicaciones</h2>
+<p>Un vector puede almacenar múltiples cantidades simultáneamente. Por ejemplo, <span class="math display">x=(x_1,x_2,\dots,x_n)</span> puede representar:</p>
+<ul>
+<li>mediciones de sensores;</li>
+<li>velocidades o fuerzas;</li>
+<li>señales discretizadas;</li>
+<li>características de un conjunto de datos;</li>
+<li>estados de un sistema dinámico;</li>
+<li>parámetros de un modelo.</li>
+</ul>
+<p>En informática, esta última interpretación es central: un texto, una imagen o un usuario se representan mediante un <strong>vector de características</strong> o <strong>embedding</strong>.</p>
+</section>
+<section id="producto-interior-o-producto-punto" class="slide level2">
+<h2>Producto interior o producto punto</h2>
+<p>Sean <span class="math inline">u=(u_1,\dots,u_n)</span> y <span class="math inline">v=(v_1,\dots,v_n)</span>. El producto interior en <span class="math inline">R^n</span> se define como <span class="math display">u\cdot v=u_1v_1+\dots+u_nv_n=\sum_{i=1}^{n}u_i v_i.</span> El resultado del producto punto es un <strong>número real</strong>, no un vector.</p>
+<h4 id="ejemplo">Ejemplo</h4>
+<p>Para <span class="math inline">u=(3,-1,2)</span> y <span class="math inline">v=(1,4,-2)</span>: <span class="math display">u\cdot v=3(1)+(-1)(4)+2(-2)=3-4-4=-5.</span></p>
+</section>
+<section id="propiedades-del-producto-interior" class="slide level2">
+<h2>Propiedades del producto interior</h2>
+<p>Para <span class="math inline">u,v,w\in R^n</span> y <span class="math inline">\lambda\in R</span>:</p>
+<ul>
+<li><span class="math inline">u\cdot v=v\cdot u</span> (conmutatividad).</li>
+<li><span class="math inline">u\cdot(v+w)=u\cdot v+u\cdot w</span> (distributividad).</li>
+<li><span class="math inline">(\lambda u)\cdot v=\lambda(u\cdot v)</span> (homogeneidad).</li>
+<li><span class="math inline">u\cdot u\ge 0</span>, y <span class="math inline">u\cdot u=0 \iff u=0</span> (positividad definida).</li>
+</ul>
+</section>
+<section id="ejercicio-1" class="slide level2">
+<h2>Ejercicio 1</h2>
+<p>Sean <span class="math display">u=(3,1,-2), \qquad v=(2,-3,4).</span> Realice cada uno de los siguientes pasos:</p>
+<ul>
+<li>Calcule <span class="math inline">u+v</span>.</li>
+<li>Calcule <span class="math inline">3u-2v</span>.</li>
+<li>Calcule <span class="math inline">u\cdot v</span>.</li>
+</ul>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+<h4 id="suma">Suma</h4>
+<p><span class="math display">u+v=(3+2,\,1+(-3),\,-2+4)=(5,-2,2).</span></p>
+<h4 id="combinación-lineal">Combinación lineal</h4>
+<p><span class="math display">3u-2v=3(3,1,-2)-2(2,-3,4)=(9,3,-6)-(4,-6,8)=(5,9,-14).</span></p>
+<h4 id="producto-punto">Producto punto</h4>
+<p><span class="math display">u\cdot v=3(2)+1(-3)+(-2)(4)=6-3-8=-5.</span></p>
+</section>
+<section id="ortogonalidad" class="slide level2">
+<h2>Ortogonalidad</h2>
+<p>Dos vectores no nulos son <strong>ortogonales</strong> si forman un ángulo de <span class="math inline">90^\circ</span>. Algebraicamente, <span class="math display">u\perp v \iff u\cdot v=0.</span></p>
+<h4 id="ejemplo-1">Ejemplo</h4>
+<p>Para <span class="math inline">u=(3,2)</span> y <span class="math inline">v=(-2,3)</span>: <span class="math display">u\cdot v=3(-2)+2(3)=0,</span> por lo tanto <span class="math inline">u\perp v</span>.</p>
+</section>
+<section id="ejercicio-2" class="slide level2">
+<h2>Ejercicio 2</h2>
+<p>Determine el valor de <span class="math inline">k</span> para que <span class="math display">u=(2,k,1), \qquad v=(1,-3,4)</span> sean ortogonales.</p>
+</section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+<p>Imponemos la condición de ortogonalidad <span class="math inline">u\cdot v=0</span>: <span class="math display">u\cdot v=2(1)+k(-3)+1(4)=2-3k+4=6-3k=0.</span> Despejamos: <span class="math display">3k=6 \implies k=2.</span></p>
+</section>
+<section id="norma-de-un-vector" class="slide level2">
+<h2>Norma de un vector</h2>
+<p>La <strong>norma</strong> o magnitud de un vector <span class="math inline">u</span> se define a partir del producto interior: <span class="math display">\|u\|=\sqrt{u\cdot u}.</span> Si <span class="math inline">u=(u_1,\dots,u_n)</span>, entonces <span class="math display">\|u\|=\sqrt{u_1^2+\dots+u_n^2}.</span></p>
+<h4 id="ejemplo-2">Ejemplo</h4>
+<p>Para <span class="math inline">u=(-2,3,6)</span>: <span class="math display">\|u\|=\sqrt{(-2)^2+3^2+6^2}=\sqrt{4+9+36}=\sqrt{49}=7.</span></p>
+</section>
+<section id="propiedades-de-la-norma" class="slide level2">
+<h2>Propiedades de la norma</h2>
+<p>Para <span class="math inline">u\in R^n</span> y <span class="math inline">\lambda\in R</span>:</p>
+<ul>
+<li><span class="math inline">\|u\|\ge 0</span>.</li>
+<li><span class="math inline">\|u\|=0 \iff u=0</span>.</li>
+<li><span class="math inline">\|\lambda u\|=|\lambda|\,\|u\|</span>.</li>
+<li><span class="math inline">\|u+v\|\le \|u\|+\|v\|</span> (desigualdad triangular).</li>
+</ul>
+<p>La norma mide la <strong>longitud</strong> del vector y también la distancia entre dos puntos: <span class="math inline">\|u-v\|</span>.</p>
+</section>
+<section id="vectores-unitarios-y-normalización" class="slide level2">
+<h2>Vectores unitarios y normalización</h2>
+<p>Un vector <span class="math inline">u</span> es <strong>unitario</strong> si <span class="math inline">\|u\|=1</span>. Si <span class="math inline">u\neq 0</span>, se puede obtener un vector unitario con la misma dirección mediante <span class="math display">\hat{u}=\dfrac{u}{\|u\|}.</span> A este proceso se le llama <strong>normalización</strong>.</p>
+<h4 id="ejemplo-3">Ejemplo</h4>
+<p>Para <span class="math inline">u=(5,12)</span>, su norma es <span class="math inline">\|u\|=\sqrt{5^2+12^2}=13</span>. Entonces <span class="math display">\hat{u}=\dfrac{1}{13}(5,12)=\left(\dfrac{5}{13},\dfrac{12}{13}\right).</span></p>
+<p>Al normalizar, la dirección y el sentido permanecen iguales; la magnitud se transforma en <span class="math inline">1</span>.</p>
+</section>
+<section id="ángulo-entre-dos-vectores" class="slide level2">
+<h2>Ángulo entre dos vectores</h2>
+<p>Para dos vectores no nulos, <span class="math display">u\cdot v=\|u\|\,\|v\|\cos\theta.</span> Por lo tanto, <span class="math display">\cos\theta=\dfrac{u\cdot v}{\|u\|\,\|v\|}, \qquad 0\le\theta\le\pi.</span></p>
+<p>El <strong>signo del producto punto</strong> clasifica el ángulo sin calcularlo:</p>
+<ul>
+<li><span class="math inline">u\cdot v&gt;0 \implies \cos\theta&gt;0 \implies \theta&lt;90^\circ</span> (agudo).</li>
+<li><span class="math inline">u\cdot v=0 \implies \theta=90^\circ</span> (recto).</li>
+<li><span class="math inline">u\cdot v&lt;0 \implies \cos\theta&lt;0 \implies \theta&gt;90^\circ</span> (obtuso).</li>
+</ul>
+</section>
+<section id="ejercicio-3" class="slide level2">
+<h2>Ejercicio 3</h2>
+<p>Sean <span class="math display">u=(2,1,-3), \qquad v=(1,-1,2).</span> Sin calcular explícitamente el ángulo, determine si es agudo, recto u obtuso.</p>
+</section>
+<section id="section-2" class="slide level2">
+<h2></h2>
+<p>Calculamos el producto punto: <span class="math display">u\cdot v=2(1)+1(-1)+(-3)(2)=2-1-6=-5.</span> Como <span class="math inline">u\cdot v&lt;0</span>, el ángulo es <strong>obtuso</strong>.</p>
+</section>
+<section id="ejercicio-4" class="slide level2">
+<h2>Ejercicio 4</h2>
+<p>Sean <span class="math display">u=(2,2,0), \qquad v=(0,3,3).</span> Calcule el ángulo entre los vectores.</p>
+</section>
+<section id="section-3" class="slide level2">
+<h2></h2>
+<p>Calculamos el producto punto y las normas: <span class="math display">u\cdot v=2(0)+2(3)+0(3)=6,</span> <span class="math display">\|u\|=\sqrt{2^2+2^2+0^2}=2\sqrt{2}, \qquad \|v\|=\sqrt{0^2+3^2+3^2}=3\sqrt{2}.</span> Entonces <span class="math display">\cos\theta=\dfrac{u\cdot v}{\|u\|\|v\|}=\dfrac{6}{(2\sqrt{2})(3\sqrt{2})}=\dfrac{6}{12}=\dfrac{1}{2},</span> por lo tanto <span class="math display">\theta=\arccos\left(\dfrac{1}{2}\right)=60^\circ.</span></p>
+</section>
+<section id="proyección-de-un-vector" class="slide level2">
+<h2>Proyección de un vector</h2>
+<p>La proyección de <span class="math inline">u</span> sobre <span class="math inline">v</span> representa la componente de <span class="math inline">u</span> en la dirección de <span class="math inline">v</span>.</p>
+<ul>
+<li><strong>Proyección escalar:</strong> <span class="math inline">\operatorname{comp}_v u=\dfrac{u\cdot v}{\|v\|}</span>.</li>
+<li><strong>Proyección vectorial:</strong> <span class="math inline">\operatorname{proj}_v u=\dfrac{u\cdot v}{v\cdot v}\,v</span>.</li>
+</ul>
+<h4 id="ejemplo-4">Ejemplo</h4>
+<p>Para <span class="math inline">u=(4,3)</span> y <span class="math inline">v=(2,-1)</span> tenemos <span class="math inline">u\cdot v=5</span> y <span class="math inline">v\cdot v=5</span>, entonces <span class="math display">\operatorname{proj}_v u=\dfrac{5}{5}(2,-1)=(2,-1).</span></p>
+</section>
+<section id="descomposición-ortogonal" class="slide level2">
+<h2>Descomposición ortogonal</h2>
+<p>Todo vector <span class="math inline">u</span> puede descomponerse respecto de una dirección <span class="math inline">v</span> como <span class="math display">u=\operatorname{proj}_v u+(u-\operatorname{proj}_v u).</span> La segunda componente es <strong>ortogonal</strong> a <span class="math inline">v</span>: <span class="math display">(u-\operatorname{proj}_v u)\cdot v=0.</span></p>
+<p>Esto separa <span class="math inline">u</span> en una parte paralela a <span class="math inline">v</span> y una parte perpendicular a <span class="math inline">v</span>.</p>
+</section>
+<section id="ejercicio-5" class="slide level2">
+<h2>Ejercicio 5</h2>
+<p>Sean <span class="math display">u=(3,5), \qquad v=(1,2).</span> Realice cada uno de los siguientes pasos:</p>
+<ul>
+<li>Calcule <span class="math inline">\operatorname{proj}_v u</span>.</li>
+<li>Determine <span class="math inline">w=u-\operatorname{proj}_v u</span>.</li>
+<li>Compruebe que <span class="math inline">w\cdot v=0</span>.</li>
+</ul>
+</section>
+<section id="section-4" class="slide level2">
+<h2></h2>
+<h4 id="proyección">Proyección</h4>
+<p>Calculamos <span class="math inline">u\cdot v=3(1)+5(2)=13</span> y <span class="math inline">v\cdot v=1^2+2^2=5</span>: <span class="math display">\operatorname{proj}_v u=\dfrac{13}{5}(1,2)=\left(\dfrac{13}{5},\dfrac{26}{5}\right).</span></p>
+<h4 id="componente-ortogonal">Componente ortogonal</h4>
+<p><span class="math display">w=u-\operatorname{proj}_v u=(3,5)-\left(\dfrac{13}{5},\dfrac{26}{5}\right)=\left(\dfrac{2}{5},-\dfrac{1}{5}\right).</span></p>
+<h4 id="comprobación">Comprobación</h4>
+<p><span class="math display">w\cdot v=\dfrac{2}{5}(1)+\left(-\dfrac{1}{5}\right)(2)=\dfrac{2}{5}-\dfrac{2}{5}=0.</span></p>
+</section>
+<section id="producto-cruz-en-r3" class="slide level2">
+<h2>Producto cruz en R3</h2>
+<p>El producto cruz se define, en este curso, para vectores de <span class="math inline">R^3</span>. Sean <span class="math inline">u=(u_1,u_2,u_3)</span> y <span class="math inline">v=(v_1,v_2,v_3)</span>. Se define mediante el determinante simbólico <span class="math display">u\times v=\begin{vmatrix}\mathbf{i}&amp;\mathbf{j}&amp;\mathbf{k}\\ u_1&amp;u_2&amp;u_3\\ v_1&amp;v_2&amp;v_3\end{vmatrix}.</span> Equivalentemente, <span class="math display">u\times v=(u_2v_3-u_3v_2,\; u_3v_1-u_1v_3,\; u_1v_2-u_2v_1).</span> El resultado es un vector de <span class="math inline">R^3</span> y cumple <span class="math inline">(u\times v)\perp u</span> y <span class="math inline">(u\times v)\perp v</span>.</p>
+</section>
+<section id="propiedades-del-producto-cruz" class="slide level2">
+<h2>Propiedades del producto cruz</h2>
+<p>Para <span class="math inline">u,v,w\in R^3</span>:</p>
+<ul>
+<li><span class="math inline">u\times v=-(v\times u)</span> (anticommutatividad).</li>
+<li><span class="math inline">u\times u=0</span>.</li>
+<li><span class="math inline">u\times(v+w)=u\times v+u\times w</span> (distributividad).</li>
+<li><span class="math inline">u\times v=0</span> si y solo si los vectores son paralelos.</li>
+</ul>
+</section>
+<section id="interpretación-geométrica-del-producto-cruz" class="slide level2">
+<h2>Interpretación geométrica del producto cruz</h2>
+<p>Se cumple que <span class="math display">\|u\times v\|=\|u\|\,\|v\|\sin\theta.</span> Por lo tanto,</p>
+<ul>
+<li><span class="math inline">A_{\text{paralelogramo}}=\|u\times v\|</span>, el área del paralelogramo generado por <span class="math inline">u</span> y <span class="math inline">v</span>;</li>
+<li><span class="math inline">A_{\triangle}=\dfrac{1}{2}\|u\times v\|</span>, el área del triángulo correspondiente.</li>
+</ul>
+</section>
+<section id="section-5" class="slide level2">
+<h2></h2>
+<div style="text-align:center; width:100%; margin-left: auto; margin-right: auto;">
+<p><img data-src="./cross_product.png"></p>
+</div>
+</section>
+<section id="ejemplo-5" class="slide level2">
+<h2>Ejemplo</h2>
+<p>Para <span class="math inline">u=(2,1,0)</span> y <span class="math inline">v=(1,-1,3)</span>: <span class="math display">u\times v=(3,-6,-3).</span> Comprobamos la perpendicularidad: <span class="math display">(u\times v)\cdot u=3(2)+(-6)(1)+(-3)(0)=0,</span> <span class="math display">(u\times v)\cdot v=3(1)+(-6)(-1)+(-3)(3)=0.</span></p>
+</section>
+<section id="ejercicio-6" class="slide level2">
+<h2>Ejercicio 6</h2>
+<p>Sean <span class="math display">u=(3,1,-2), \qquad v=(2,-1,1).</span> Realice cada uno de los siguientes pasos:</p>
+<ul>
+<li>Calcule <span class="math inline">u\times v</span>.</li>
+<li>Verifique que el resultado es perpendicular a ambos vectores.</li>
+<li>Determine el área del paralelogramo generado por <span class="math inline">u</span> y <span class="math inline">v</span>.</li>
+</ul>
+</section>
+<section id="section-6" class="slide level2">
+<h2></h2>
+<h4 id="producto-cruz">Producto cruz</h4>
+<p><span class="math display">u\times v=(1(1)-(-2)(-1),\,(-2)(2)-(3)(1),\,(3)(-1)-(1)(2))=(-1,-7,-5).</span></p>
+<h4 id="perpendicularidad">Perpendicularidad</h4>
+<p><span class="math display">(u\times v)\cdot u=(-1)(3)+(-7)(1)+(-5)(-2)=-3-7+10=0,</span> <span class="math display">(u\times v)\cdot v=(-1)(2)+(-7)(-1)+(-5)(1)=-2+7-5=0.</span></p>
+<h4 id="área">Área</h4>
+<p><span class="math display">A=\|u\times v\|=\sqrt{(-1)^2+(-7)^2+(-5)^2}=\sqrt{1+49+25}=\sqrt{75}=5\sqrt{3}\approx 8{,}66.</span></p>
+</section>
+<section id="similitud-coseno" class="slide level2">
+<h2>Similitud coseno</h2>
+<p>En computación, dos elementos se representan mediante vectores (embeddings) y se comparan con el <strong>coseno del ángulo</strong> entre ellos: <span class="math display">\text{sim}(u,v)=\cos\theta=\dfrac{u\cdot v}{\|u\|\,\|v\|}=\dfrac{\operatorname{comp}_v u}{\|u\|}.</span> Es decir, la similitud coseno es la <strong>proyección escalar normalizada</strong>. Como <span class="math inline">|\cos\theta|\le 1</span>, se tiene <span class="math inline">\text{sim}(u,v)\in[-1,1]</span>:</p>
+<ul>
+<li>valores cercanos a <span class="math inline">1</span> indican vectores alineados (muy similares);</li>
+<li>valores cercanos a <span class="math inline">0</span>, vectores ortogonales (sin relación);</li>
+<li>valores cercanos a <span class="math inline">-1</span>, vectores opuestos.</li>
+</ul>
+<h4 id="idea-clave">Idea clave</h4>
+<p>Si los vectores están normalizados, <span class="math inline">\|u\|=\|v\|=1</span>, entonces <span class="math inline">\text{sim}(u,v)=u\cdot v</span>: basta el producto punto.</p>
+</section>
+<section id="aplicación-búsqueda-semántica" class="slide level2">
+<h2>Aplicación: búsqueda semántica</h2>
+<p>La búsqueda tradicional compara palabras exactas. La búsqueda semántica compara <strong>significado</strong>:</p>
+<ul>
+<li>Cada documento o fragmento se convierte en un embedding, un vector en <span class="math inline">R^n</span>.</li>
+<li>La consulta del usuario también se convierte en un vector.</li>
+<li>Se calcula la similitud coseno entre la consulta y cada documento.</li>
+<li>Se ordenan los documentos de mayor a menor similitud y se devuelven los primeros.</li>
+</ul>
+<p>Esto convierte un problema de lenguaje en un problema <strong>geométrico</strong>: los vectores cercanos en dirección representan contenidos parecidos. La normalización permite precalcular normas y reducir el costo de cada comparación.</p>
+</section>
+<section id="aplicación-rag-retrieval-augmented-generation" class="slide level2">
+<h2>Aplicación: RAG (Retrieval-Augmented Generation)</h2>
+<p>Un modelo de lenguaje puede “alucinar” cuando responde sin fuentes. <strong>RAG</strong> combina un recuperador vectorial con un generador:</p>
+<ul>
+<li><strong>Indexación:</strong> se divide la base de conocimiento en fragmentos y cada fragmento se codifica como embedding.</li>
+<li><strong>Recuperación:</strong> la consulta se codifica y se compara con todos los fragmentos usando similitud coseno; se conservan los <span class="math inline">k</span> mejores.</li>
+<li><strong>Aumento:</strong> los fragmentos recuperados se insertan en el contexto del prompt.</li>
+<li><strong>Generación:</strong> el modelo genera la respuesta a partir de ese contexto.</li>
+</ul>
+<p>El paso de recuperación es puramente álgebra lineal: <strong>producto interior, norma y coseno</strong>. Sin estas operaciones no habría forma de decidir qué documentos son relevantes.</p>
+</section>
+<section id="section-7" class="slide level2">
+<h2></h2>
+<div style="text-align:center; width:100%; margin-left: auto; margin-right: auto;">
+<p><img data-src="./embedding%20process.png"></p>
+</div>
+</section>
+<section id="section-8" class="slide level2">
+<h2></h2>
+<div style="text-align:center; width:100%; margin-left: auto; margin-right: auto;">
+<p><img data-src="./users_prompt.webp"></p>
+</div>
+</section>
+<section id="section-9" class="slide level2">
+<h2></h2>
+<div style="text-align:center; width:100%; margin-left: auto; margin-right: auto;">
+<p><img data-src="./RAG_diagram.png"></p>
+</div>
+</section>
+<section id="ejemplo-recuperación-por-similitud-coseno" class="slide level2">
+<h2>Ejemplo: recuperación por similitud coseno</h2>
+<p>Supongamos que la consulta es <span class="math inline">q=(1,2,0)</span> y que la base contiene tres fragmentos: <span class="math display">d_1=(2,1,0), \qquad d_2=(0,1,1), \qquad d_3=(1,0,1).</span> Calculamos la similitud coseno de <span class="math inline">q</span> con cada uno:</p>
+<ul>
+<li><span class="math inline">\|q\|=\sqrt{5}</span>.</li>
+<li>Con <span class="math inline">d_1</span>: <span class="math inline">q\cdot d_1=4</span> y <span class="math inline">\|d_1\|=\sqrt{5}</span>, entonces <span class="math inline">\cos\theta_1=\dfrac{4}{\sqrt{5}\sqrt{5}}=\dfrac{4}{5}=0{,}8</span>.</li>
+<li>Con <span class="math inline">d_2</span>: <span class="math inline">q\cdot d_2=2</span> y <span class="math inline">\|d_2\|=\sqrt{2}</span>, entonces <span class="math inline">\cos\theta_2=\dfrac{2}{\sqrt{5}\sqrt{2}}=\dfrac{2}{\sqrt{10}}\approx 0{,}63</span>.</li>
+<li>Con <span class="math inline">d_3</span>: <span class="math inline">q\cdot d_3=1</span> y <span class="math inline">\|d_3\|=\sqrt{2}</span>, entonces <span class="math inline">\cos\theta_3=\dfrac{1}{\sqrt{10}}\approx 0{,}32</span>.</li>
+</ul>
+</section>
+<section id="section-10" class="slide level2">
+<h2></h2>
+<p>El orden de relevancia es <span class="math inline">d_1&gt;d_2&gt;d_3</span>.</p>
+<p>Si el número de documentos recuperados máximos fuera <span class="math inline">k=2</span>, el sistema recuperaría <span class="math inline">d_1</span> y <span class="math inline">d_2</span> para aumentar el prompt.</p>
+</section>
+<section id="gracias-por-su-atención" class="title-slide slide level1 center">
+<h1>Gracias por su atención</h1>
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="class_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="class_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="class_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="class_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="class_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="class_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="class_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="class_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="class_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'zoom',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
+              }
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
