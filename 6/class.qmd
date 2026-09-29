@@ -1,0 +1,278 @@
+---
+title: "Espacios vectoriales y conceptos relacionados"
+author: "Flavio Jara L."
+format:
+  revealjs:
+      transition: zoom
+      html-math-method: katex
+include-in-header:
+  - text: |
+      <style>
+      p,ul {
+        font-size: 0.70em;
+      }
+      </style>
+---
+
+## Objetivos de la clase
+Al finalizar la clase, el estudiante será capaz de:
+
+- Reconocer diferentes ejemplos de espacios vectoriales.
+- Determinar si un subconjunto es un subespacio vectorial.
+- Interpretar las combinaciones lineales y el espacio generado.
+- Decidir si un conjunto de vectores es linealmente independiente o dependiente.
+- Encontrar bases de espacios y subespacios vectoriales.
+- Determinar la dimensión de un espacio o subespacio.
+
+## ¿Qué entendemos por vector?
+Estamos acostumbrados a pensar en un vector como
+$$v=(3,2,-1).$$
+Pero consideremos ahora:
+$$A=\begin{pmatrix}2&1\\3&0\end{pmatrix}, \qquad p(x)=2-x+x^2, \qquad f(x)=\sin x.$$
+
+
+Un vector es simplemente un elemento de un espacio vectorial. No necesariamente es una flecha ni una lista de números.
+
+## Espacio vectorial
+Un **espacio vectorial** sobre $R$ es un conjunto $V$ cuyos elementos pueden:
+
+- sumarse entre sí;
+- multiplicarse por escalares.
+
+Estas operaciones deben satisfacer determinadas propiedades algebraicas. Los ejemplos fundamentales son
+$$R^n, \qquad M_{m\times n}(R), \qquad P_n[R], \qquad C(R).$$
+
+En informática, un vector
+$$x=(x_1,x_2,\dots,x_n)$$
+puede representar características, mediciones, estados, variables o datos de un sistema.
+
+## Propiedades de vectores
+Para $u,v,w\in V$ y $\lambda,\mu\in R$:
+
+- $u+v=v+u$.
+- $(u+v)+w=u+(v+w)$.
+- Existe $0\in V$ tal que $u+0=u$.
+- Para cada $u$ existe $-u$ tal que $u+(-u)=0$.
+- $\lambda(u+v)=\lambda u+\lambda v$.
+- $(\lambda+\mu)u=\lambda u+\mu u$.
+- $(\lambda\mu)u=\lambda(\mu u)$.
+- $1\cdot u=u$.
+
+## Ejemplo: Rn
+$$R^n=\{(x_1,x_2,\dots,x_n): x_i\in R\}.$$
+Casos concretos:
+$$R^2, \qquad R^3, \qquad R^{10}.$$
+La suma y el producto por escalar se hacen componente a componente, como en la clase anterior.
+
+## Ejemplo: matrices
+El conjunto $M_{m\times n}(R)$ de todas las matrices $m\times n$ con entradas reales es un espacio vectorial. Por ejemplo,
+$$M_{2\times2}(R)=\left\{\begin{pmatrix}a&b\\c&d\end{pmatrix}: a,b,c,d\in R\right\}.$$
+
+Toda matriz se escribe a partir de las cuatro matrices elementales:
+$$\begin{pmatrix}a&b\\c&d\end{pmatrix}=a\begin{pmatrix}1&0\\0&0\end{pmatrix}+b\begin{pmatrix}0&1\\0&0\end{pmatrix}+c\begin{pmatrix}0&0\\1&0\end{pmatrix}+d\begin{pmatrix}0&0\\0&1\end{pmatrix}.$$
+Así, una matriz de $M_{2\times2}(R)$ queda determinada por cuatro entradas y, en general, una matriz de $M_{m\times n}(R)$ queda determinada por $mn$ entradas.
+
+## Ejemplo: polinomios
+Consideremos
+$$P_n[R]=\{a_0+a_1x+\dots+a_nx^n: a_i\in R\}.$$
+Por ejemplo,
+$$P_2[R]=\{a+bx+cx^2: a,b,c\in R\}.$$
+Todo polinomio de $P_2[R]$ queda determinado por los tres coeficientes $a,b,c$. En general, un polinomio de $P_n[R]$ queda determinado por sus $n+1$ coeficientes.
+
+## Ejemplo: funciones
+Consideremos
+$$C(R)=\{f:R\to R: f \text{ es continua}\}.$$
+Ahora los vectores son funciones. Por ejemplo, $f(x)=x^2$ y $g(x)=\cos x$. La suma y el producto por escalar se definen punto a punto:
+$$(f+g)(x)=x^2+\cos x, \qquad (\lambda f)(x)=\lambda x^2.$$
+
+## Subespacios vectoriales
+Sea $V$ un espacio vectorial y $W\subseteq V$. Decimos que $W$ es un **subespacio vectorial** de $V$ si $W$, con las mismas operaciones de $V$, también es un espacio vectorial.
+
+Para verificarlo utilizamos:
+
+- $0\in W$.
+- $u,v\in W \implies u+v\in W$.
+- $u\in W$, $\lambda\in R \implies \lambda u\in W$.
+
+#### Criterio equivalente
+Si $u,v\in W$ y $\alpha,\beta\in R$, basta comprobar que $\alpha u+\beta v\in W$.
+
+## Antes de comenzar
+Siempre conviene verificar primero si
+$$0\in W.$$
+Si el vector cero no pertenece al conjunto, inmediatamente sabemos que $W$ **no** es subespacio.
+
+## Ejemplo: un subespacio
+Determine si
+$$W=\{(x,y,z)\in R^3: 2x-y+3z=0\}$$
+es un subespacio de $R^3$.
+
+##
+
+Tomemos $u=(x_1,y_1,z_1)$ y $v=(x_2,y_2,z_2)\in W$, es decir,
+$$2x_1-y_1+3z_1=0, \qquad 2x_2-y_2+3z_2=0.$$
+Para $\alpha,\beta\in R$:
+$$\alpha u+\beta v=(\alpha x_1+\beta x_2,\,\alpha y_1+\beta y_2,\,\alpha z_1+\beta z_2).$$
+Sumando sus componentes:
+$$2(\alpha x_1+\beta x_2)-(\alpha y_1+\beta y_2)+3(\alpha z_1+\beta z_2)$$
+$$=\alpha(2x_1-y_1+3z_1)+\beta(2x_2-y_2+3z_2)=0.$$
+Por lo tanto $\alpha u+\beta v\in W$ y $W$ es un subespacio de $R^3$.
+
+## Contraejemplo
+Determine si
+$$W=\{(x,y,z)\in R^3: x+y+z=3\}$$
+es un subespacio.
+
+Antes de hacer cualquier cálculo:
+$$(0,0,0)\notin W \quad\text{porque}\quad 0+0+0\neq 3.$$
+Por lo tanto $W$ **no** es subespacio.
+
+## Combinación lineal
+Dados $v_1,v_2,\dots,v_k\in V$, una expresión de la forma
+$$\alpha_1v_1+\alpha_2v_2+\dots+\alpha_kv_k$$
+se denomina **combinación lineal** de los vectores.
+
+## Espacio generado (span)
+El conjunto de todas las combinaciones lineales posibles se llama **espacio generado**:
+$$\operatorname{span}\{v_1,\dots,v_k\}=\{\alpha_1v_1+\dots+\alpha_kv_k: \alpha_i\in R\}.$$
+El espacio generado siempre es un subespacio vectorial.
+
+## Conexión con sistemas lineales
+Supongamos que
+$$A=\begin{pmatrix}|&&|\\ v_1&\cdots&v_k\\ |&&|\end{pmatrix}.$$
+Entonces
+$$b\in\operatorname{span}\{v_1,\dots,v_k\}$$
+si y solo si existen escalares $x_1,\dots,x_k$ tales que
+$$x_1v_1+\dots+x_kv_k=b.$$
+Es decir,
+$$b\in\operatorname{span}\{v_1,\dots,v_k\} \iff Ax=b \text{ es compatible}.$$
+
+## Ejercicio 1
+Sean
+$$v_1=(1,2,0), \qquad v_2=(3,-1,2).$$
+Determine si
+$$w=(5,3,2)$$
+pertenece a $\operatorname{span}\{v_1,v_2\}$.
+
+Realice cada uno de los siguientes pasos:
+
+- Plantee la ecuación $\alpha v_1+\beta v_2=w$.
+- Escriba el sistema asociado.
+- Resuelva y concluya.
+
+## 
+#### Sistema asociado
+Debemos determinar si existen $\alpha,\beta$ tales que
+$$\alpha(1,2,0)+\beta(3,-1,2)=(5,3,2).$$
+Igualando componente a componente:
+$$\begin{cases}\alpha+3\beta=5\\ 2\alpha-\beta=3\\ 2\beta=2\end{cases}$$
+
+##
+#### Resolución
+De la tercera ecuación, $2\beta=2$, así que $\beta=1$. Sustituyendo en la primera:
+$$\alpha+3=5 \implies \alpha=2.$$
+Comprobamos la segunda:
+$$2\alpha-\beta=4-1=3.$$
+Por lo tanto $w\in\operatorname{span}\{v_1,v_2\}$, ya que
+$$w=2\cdot v_1+1\cdot v_2.$$
+
+## Independencia lineal
+Los vectores $v_1,\dots,v_k$ son **linealmente independientes** (LI) si
+$$c_1v_1+\dots+c_kv_k=0$$
+implica necesariamente
+$$c_1=c_2=\dots=c_k=0.$$
+Es decir, la única combinación lineal que da el vector cero es la trivial.
+
+## Dependencia lineal
+Si existe al menos una solución no trivial, es decir, coeficientes no todos nulos con
+$$c_1v_1+\dots+c_kv_k=0,$$
+entonces los vectores son **linealmente dependientes** (LD).
+
+#### Interpretación de la dependencia
+Si $v_3=3v_1-v_2$, entonces
+$$3v_1-v_2-v_3=0.$$
+Tenemos una combinación lineal igual al vector cero con coeficientes no todos nulos.
+
+El vector $v_3$ no aporta una nueva dirección: es un vector **redundante**.
+
+## Ejercicio 2
+Determine si los vectores
+$$v_1=(2,1,1), \qquad v_2=(1,-1,3), \qquad v_3=(4,-1,7)$$
+son linealmente independientes o dependientes.
+
+Realice cada uno de los siguientes pasos:
+
+- Plantee $c_1v_1+c_2v_2+c_3v_3=0$.
+- Escriba y reduzca el sistema homogéneo.
+- Determine si existe una solución no trivial.
+
+## 
+#### Sistema homogéneo
+$$c_1(2,1,1)+c_2(1,-1,3)+c_3(4,-1,7)=(0,0,0).$$
+Igualando componente a componente:
+$$\begin{cases}2c_1+c_2+4c_3=0\\ c_1-c_2-c_3=0\\ c_1+3c_2+7c_3=0\end{cases}$$
+
+##
+#### Resolución
+De la segunda ecuación, $c_1=c_2+c_3$. Sustituyendo en la primera:
+$$2(c_2+c_3)+c_2+4c_3=3c_2+6c_3=0 \implies c_2=-2c_3.$$
+Entonces $c_1=-2c_3+c_3=-c_3$. La tercera ecuación se satisface automáticamente:
+$$-c_3+3(-2c_3)+7c_3=0.$$
+Con $c_3=-1$ obtenemos $c_1=1$ y $c_2=2$, una solución no trivial. Por lo tanto $\{v_1,v_2,v_3\}$ es LD; de hecho,
+$$v_1+2v_2=v_3.$$
+
+## Ejercicio 3
+Determine para qué valores de $a$ los vectores
+$$v_1=(1,0,3), \qquad v_2=(0,1,2), \qquad v_3=(1,1,a)$$
+son linealmente independientes.
+
+Realice cada uno de los siguientes pasos:
+
+- Construya la matriz con los vectores como columnas.
+- Calcule su determinante.
+- Determine dónde se anula.
+
+## 
+#### Matriz asociada
+$$A=\begin{pmatrix}1&0&1\\ 0&1&1\\ 3&2&a\end{pmatrix}.$$
+Para tres vectores en $R^3$:
+$$\text{LI} \iff \det(A)\neq 0.$$
+
+##
+#### Determinante
+Expandiendo por la primera fila:
+$$\det(A)=1\begin{vmatrix}1&1\\2&a\end{vmatrix}-0+1\begin{vmatrix}0&1\\3&2\end{vmatrix}=1(a-2)+(0-3)=a-5.$$
+Por lo tanto
+$$a\neq 5 \implies \text{LI}, \qquad a=5 \implies \text{LD}.$$
+
+## Base
+Una colección de vectores
+$$B=\{v_1,\dots,v_k\}$$
+es una **base** de $V$ si cumple simultáneamente:
+
+- genera todo el espacio $V$;
+- es linealmente independiente.
+
+$$\text{BASE}=\text{CONJUNTO GENERADOR}+\text{INDEPENDENCIA LINEAL}.$$
+
+## ¿Cuáles son bases de R2?
+Considere los conjuntos:
+$$A=\{(2,1),(1,-1)\}, \qquad B=\{(2,1),(1,-1),(3,0)\}, \qquad C=\{(2,1)\}.$$
+
+**Pregunta:** ¿cuáles son bases de $R^2$?
+
+#### Análisis
+- $A$: dos vectores no paralelos, son LI y generan $R^2$. Por lo tanto $A$ es base.
+- $B$: genera $R^2$, pero tiene tres vectores en un espacio de dimensión $2$, así que es LD. Por lo tanto no es base.
+- $C$: es LI, pero un solo vector no puede generar $R^2$. Por lo tanto no es base.
+
+## Dimensión
+La **dimensión** de un espacio vectorial $V$ es el número de vectores de cualquiera de sus bases:
+$$\dim(V)=\text{número de vectores de una base de } V.$$
+
+#### Bases naturales
+- En $R^n$, la base natural es $\{e_1,\dots,e_n\}$ y $\dim(R^n)=n$.
+- En $P_n[R]$, la base natural es $\{1,x,\dots,x^n\}$ y $\dim(P_n[R])=n+1$.
+- En $M_{m\times n}(R)$, la base natural son las matrices elementales y $\dim(M_{m\times n})=mn$.
+
+# Gracias por su atención
