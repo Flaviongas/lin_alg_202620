@@ -1,0 +1,235 @@
+---
+title: "Bases y dimensión"
+author: "Flavio Jara L."
+format:
+  revealjs:
+      transition: zoom
+      html-math-method: katex
+include-in-header:
+  - text: |
+      <style>
+      p,ul {
+        font-size: 0.70em;
+      }
+      </style>
+---
+
+## Objetivos de la clase
+Al finalizar la clase, el estudiante será capaz de:
+
+- Recordar la definición de base y de dimensión.
+- Encontrar una base de un subespacio descrito por ecuaciones.
+- Obtener una base a partir de un conjunto generador.
+- Decidir independencia lineal y pertenencia usando parámetros.
+- Calcular la dimensión de un espacio o subespacio.
+
+## Recordatorio: base y dimensión
+Una colección $B=\{v_1,\dots,v_k\}$ es una **base** de $V$ si genera todo el espacio $V$ y es linealmente independiente:
+$$\text{BASE}=\text{CONJUNTO GENERADOR}+\text{INDEPENDENCIA LINEAL}.$$
+La **dimensión** es el número de vectores de cualquiera de sus bases. En particular, $\dim(R^n)=n$, $\dim(P_n[R])=n+1$ y $\dim(M_{m\times n})=mn$.
+
+## Cómo encontrar una base
+Depende de cómo venga descrito el subespacio:
+
+- Si viene por **ecuaciones**, resolvemos el sistema homogéneo, escribimos la solución en términos de las variables libres y cada parámetro libre entrega un vector de la base.
+- Si viene por un **conjunto generador**, escalonamos la matriz de vectores: las filas no nulas (o los pivotes) entregan una base y la dimensión es el rango.
+
+En ambos casos, la dimensión es el número de vectores de la base.
+
+## Cómo verificar un subespacio
+Para decidir si un conjunto $W\subseteq V$ es un subespacio vectorial, se comprueban tres condiciones:
+
+- el vector cero pertenece a $W$;
+- si $u,v\in W$, entonces $u+v\in W$ (cerradura bajo la suma);
+- si $u\in W$ y $\lambda\in R$, entonces $\lambda u\in W$ (cerradura bajo el producto por escalar).
+
+#### Criterio equivalente
+Las dos cerraduras se resumen en una sola condición: para todo $u,v\in W$ y todo $\alpha,\beta\in R$,
+$$\alpha u+\beta v\in W.$$
+
+
+## Ejercicio 1
+Considere el conjunto
+$$W=\{(x,y)\in R^2: y=3x\}.$$
+Realice cada uno de los siguientes pasos:
+
+- Determine si $W$ es un subespacio de $R^2$.
+- Describa geométricamente el conjunto $W$.
+- Encuentre un vector que genere a $W$.
+- Determine $\dim W$.
+
+## 
+#### Subespacio
+La condición $y=3x$ es lineal y homogénea. Si $u=(x_1,3x_1)$ y $v=(x_2,3x_2)$ pertenecen a $W$, entonces
+$$u+v=(x_1+x_2,\,3(x_1+x_2))\in W,$$
+y si $\lambda\in R$,
+$$\lambda u=(\lambda x_1,\,3\lambda x_1)\in W.$$
+Además $(0,0)\in W$. Por lo tanto, $W$ es un subespacio de $R^2$.
+
+## 
+#### Descripción geométrica
+Todo vector de $W$ tiene la forma
+$$(x,y)=(x,3x)=x(1,3).$$
+Es decir, $W$ es la recta que pasa por el origen con pendiente $3$.
+
+#### Generador, base y dimensión
+$$W=\operatorname{span}\{(1,3)\}, \qquad B=\{(1,3)\}.$$
+El vector $(1,3)$ no es nulo, así que es linealmente independiente. Por lo tanto,
+$$\dim W=1.$$
+
+## Ejercicio 2
+Considere el subespacio
+$$W=\left\{A=\begin{pmatrix}a&b\\c&d\end{pmatrix}\in M_{2\times2}(R): a+2b-c=0\right\}.$$
+Realice cada uno de los siguientes pasos:
+
+- Exprese una matriz arbitraria de $W$ en términos de parámetros libres.
+- Encuentre un conjunto generador de $W$.
+- Determine una base de $W$.
+- Determine $\dim W$.
+
+## 
+#### Parametrización
+Despejamos $c$ de la condición:
+$$a+2b-c=0 \implies c=a+2b.$$
+Entonces toda matriz de $W$ tiene la forma
+$$A=\begin{pmatrix}a&b\\a+2b&d\end{pmatrix}.$$
+
+## 
+#### Conjunto generador
+Separamos según los parámetros libres $a,b,d$:
+$$A=a\begin{pmatrix}1&0\\1&0\end{pmatrix}+b\begin{pmatrix}0&1\\2&0\end{pmatrix}+d\begin{pmatrix}0&0\\0&1\end{pmatrix}.$$
+Por lo tanto,
+$$W=\operatorname{span}\left\{\begin{pmatrix}1&0\\1&0\end{pmatrix},\begin{pmatrix}0&1\\2&0\end{pmatrix},\begin{pmatrix}0&0\\0&1\end{pmatrix}\right\}.$$
+
+## 
+#### Base y dimensión
+Para verificar independencia, supongamos
+$$\alpha\begin{pmatrix}1&0\\1&0\end{pmatrix}+\beta\begin{pmatrix}0&1\\2&0\end{pmatrix}+\gamma\begin{pmatrix}0&0\\0&1\end{pmatrix}=\begin{pmatrix}0&0\\0&0\end{pmatrix}.$$
+Igualando entradas se obtiene $\alpha=0$, $\beta=0$ y $\gamma=0$. Las tres matrices son linealmente independientes, así que
+$$B=\left\{\begin{pmatrix}1&0\\1&0\end{pmatrix},\begin{pmatrix}0&1\\2&0\end{pmatrix},\begin{pmatrix}0&0\\0&1\end{pmatrix}\right\}, \qquad \dim W=3.$$
+
+## Ejercicio 3
+Considere el subespacio
+$$W=\{p(x)\in P_3[R]: p(1)=p(-1)\}.$$
+Realice cada uno de los siguientes pasos:
+
+- Escriba un polinomio general de $P_3[R]$ y simplifique la condición.
+- Encuentre un conjunto generador de $W$.
+- Determine una base de $W$ y compruebe que es linealmente independiente.
+- Determine $\dim W$.
+
+## 
+#### Condición
+Un polinomio general de $P_3[R]$ es $p(x)=a+bx+cx^2+dx^3$. Evaluando en $1$ y en $-1$,
+$$p(1)=a+b+c+d, \qquad p(-1)=a-b+c-d.$$
+La condición $p(1)=p(-1)$ implica
+$$a+b+c+d=a-b+c-d \implies 2b+2d=0 \implies d=-b.$$
+
+## 
+#### Parametrización y conjunto generador
+Sustituyendo $d=-b$,
+$$p(x)=a+cx^2+b(x-x^3).$$
+Por lo tanto,
+$$W=\operatorname{span}\{1,\;x^2,\;x-x^3\}.$$
+
+#### Independencia
+Si $a+cx^2+b(x-x^3)=0$, comparando potencias se obtiene $a=0$, $c=0$ y $b=0$. Las tres funciones son linealmente independientes.
+
+## 
+#### Base y dimensión
+$$B=\{1,\;x^2,\;x-x^3\}, \qquad \dim W=3.$$
+Conviene notar que no todos los elementos de $W$ son polinomios pares: el polinomio $x-x^3$ no es par, pero cumple $p(1)=p(-1)=0$.
+
+## Ejercicio 4
+Considere los vectores
+$$v_1=(2,1,0), \qquad v_2=(0,1,1), \qquad v_3=(1,0,2).$$
+Determine si
+$$v=(5,3,8)$$
+es combinación lineal de $v_1,v_2,v_3$. Si lo es, encuentre los escalares.
+
+## 
+#### Sistema asociado
+Buscamos $\alpha,\beta,\gamma$ tales que
+$$\alpha(2,1,0)+\beta(0,1,1)+\gamma(1,0,2)=(5,3,8).$$
+Igualando componente a componente:
+$$\begin{cases}2\alpha+\gamma=5\\ \alpha+\beta=3\\ \beta+2\gamma=8\end{cases}$$
+
+## 
+#### Resolución
+De la segunda ecuación, $\beta=3-\alpha$. De la primera, $\gamma=5-2\alpha$. Sustituyendo en la tercera:
+$$(3-\alpha)+2(5-2\alpha)=8 \implies 13-5\alpha=8 \implies \alpha=1.$$
+Entonces $\beta=2$ y $\gamma=3$. Por lo tanto,
+$$v=1\cdot v_1+2\cdot v_2+3\cdot v_3,$$
+es decir, $v$ sí es combinación lineal de $v_1,v_2,v_3$.
+
+## Ejercicio 5
+Sea
+$$L=\{(1,1,p),\;(1,p,1),\;(p,1,1)\}.$$
+Determine los valores de $p\in R$ para los cuales $L$ es linealmente independiente.
+
+## 
+#### Determinante
+Como son tres vectores de $R^3$, formamos la matriz con ellos como filas y calculamos su determinante:
+$$A=\begin{pmatrix}1&1&p\\1&p&1\\p&1&1\end{pmatrix}.$$
+Expandiendo por la primera fila,
+$$\det(A)=1(p-1)-(1-p)+p(1-p^2)=-p^3+3p-2.$$
+Factorizando,
+$$\det(A)=-(p-1)^2(p+2).$$
+
+## 
+#### Conclusión
+Los vectores son linealmente independientes si y solo si $\det(A)\neq0$, es decir,
+$$p\neq1 \quad\text{y}\quad p\neq-2.$$
+Cuando $p=1$ o $p=-2$, el conjunto es linealmente dependiente.
+
+## Ejercicio 6
+Sea
+$$v_1=(1,k,-3), \qquad v_2=(k,2,4), \qquad v_3=(3,4,1).$$
+Determine los valores de $k\in R$ para los cuales $\{v_1,v_2,v_3\}$ es una base de $R^3$.
+
+## 
+#### Determinante
+Formamos la matriz con los vectores como filas:
+$$A=\begin{pmatrix}1&k&-3\\k&2&4\\3&4&1\end{pmatrix}.$$
+Calculamos el determinante expandiendo por la primera fila:
+$$\det(A)=1(2-16)-k(k-12)-3(4k-6).$$
+
+## 
+Simplificando,
+$$\det(A)=-14-k^2+12k-12k+18=4-k^2=(2-k)(2+k).$$
+Los tres vectores forman una base de $R^3$ si y solo si son linealmente independientes, esto es,
+$$\det(A)\neq0 \implies 4-k^2\neq0 \implies k\neq2,\quad k\neq-2.$$
+
+## Ejercicio 7
+Considere el subespacio
+$$W=\{(x,y,z)\in R^3: x-y+2z=0\}.$$
+Analice si cada afirmación es verdadera o falsa, justificando:
+
+- $\dim W=3$.
+- $(1,1,0)\in W$.
+- $\{(1,1,0),(-2,0,1)\}$ es una base de $W$.
+- $(1,0,0)\in W$.
+
+## 
+#### Base de W
+Despejamos $x=y-2z$. Entonces
+$$(x,y,z)=(y-2z,\,y,\,z)=y(1,1,0)+z(-2,0,1),$$
+es decir,
+$$W=\operatorname{span}\{(1,1,0),(-2,0,1)\}.$$
+Los dos vectores no son múltiplos entre sí, por lo que son linealmente independientes y forman una base de $W$.
+
+## 
+#### Respuestas
+- $\dim W=3$: falso, pues la base tiene dos vectores y $\dim W=2$.
+- $(1,1,0)\in W$: verdadero, ya que $1-1+2(0)=0$.
+- $\{(1,1,0),(-2,0,1)\}$ es base de $W$: verdadero, genera $W$ y es linealmente independiente.
+- $(1,0,0)\in W$: falso, porque $1-0+2(0)=1\neq0$.
+
+## Síntesis
+- Subespacio por ecuaciones: parametrizar con las variables libres y leer una base en los parámetros.
+- Subespacio por generador: escalonar la matriz y quedarse con las filas no nulas.
+- La dimensión es el número de vectores de la base y coincide con el rango de la matriz asociada.
+
+$$\text{Encontrar una base}=\text{eliminar la redundancia conservando la información necesaria}.$$
+
+# Gracias por su atención
