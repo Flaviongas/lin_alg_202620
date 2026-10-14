@@ -1,0 +1,197 @@
+---
+title: "Guía de ejercicios 1"
+author: "Flavio Jara L."
+format:
+  revealjs:
+      transition: zoom
+      html-math-method: katex
+include-in-header:
+  - text: |
+      <style>
+      p,ul {
+        font-size: 0.70em;
+      }
+      </style>
+---
+
+## Objetivos de la clase
+En esta clase resolveremos la guía de trabajo de la Unidad 2. Al finalizar, el estudiante será capaz de:
+
+- Verificar si un conjunto es un espacio o un subespacio vectorial.
+- Decidir si un vector pertenece a un espacio generado.
+- Clasificar conjuntos de vectores como LI o LD.
+- Encontrar bases y determinar dimensiones de subespacios.
+
+## Recordatorio: subespacios y span
+Un subconjunto $W\subseteq V$ es un subespacio si se cumple:
+
+- $0\in W$;
+- $u,v\in W \implies u+v\in W$;
+- $u\in W$, $\lambda\in R \implies \lambda u\in W$.
+
+De forma equivalente, para todo $u,v\in W$ y $\alpha,\beta\in R$ se tiene $\alpha u+\beta v\in W$.
+
+El **span** de un conjunto es el conjunto de todas sus combinaciones lineales:
+$$\operatorname{span}\{v_1,\dots,v_k\}=\{\alpha_1v_1+\dots+\alpha_kv_k: \alpha_i\in R\},$$
+y siempre es un subespacio.
+
+## Recordatorio: LI, base y dimensión
+Los vectores $v_1,\dots,v_k$ son **linealmente independientes** si la única forma de obtener el vector cero es la trivial:
+$$c_1v_1+\dots+c_kv_k=0 \implies c_1=\dots=c_k=0.$$
+Si existe una solución no trivial, el conjunto es **linealmente dependiente**.
+
+Una **base** de $V$ es un conjunto que genera $V$ y es linealmente independiente, y la **dimensión** es el número de vectores de cualquiera de sus bases.
+
+## Problema 1
+Considere el conjunto
+$$V=\{(x,y,0)\in R^3: x,y\in R\}$$
+con las operaciones usuales de adición y multiplicación por escalar en $R^3$:
+$$(x_1,y_1,0)+(x_2,y_2,0)=(x_1+x_2,\,y_1+y_2,\,0),$$
+$$\alpha\cdot(x,y,0)=(\alpha x,\alpha y,0), \qquad \alpha\in R.$$
+Realice cada uno de los siguientes pasos:
+
+- Verifique la cerradura bajo la suma y la existencia del vector cero en $V$.
+- Considere $W=\{(x,y,3)\in R^3: x,y\in R\}$ con las mismas operaciones y demuestre que no es un espacio vectorial, indicando al menos un axioma que falla.
+
+## 
+#### Cerradura bajo la suma
+Si $u=(x_1,y_1,0)$ y $v=(x_2,y_2,0)$ pertenecen a $V$, entonces
+$$u+v=(x_1+x_2,\,y_1+y_2,\,0)\in V,$$
+pues la tercera componente sigue siendo $0$. La suma no sale del conjunto.
+
+#### Elemento neutro aditivo
+El vector $(0,0,0)$ tiene la forma de $V$ y cumple
+$$(x,y,0)+(0,0,0)=(x,y,0),$$
+por lo tanto $V$ contiene al vector cero.
+
+## 
+#### El conjunto W no es un espacio vectorial
+En $W$ no existe el vector cero, ya que $(0,0,0)$ no tiene la forma $(x,y,3)$.
+
+Además, la suma falla:
+$$(x_1,y_1,3)+(x_2,y_2,3)=(x_1+x_2,\,y_1+y_2,\,6)\notin W.$$
+Por lo tanto $W$ no es un espacio vectorial.
+
+## Problema 2
+Determine si cada uno de los siguientes subconjuntos es un subespacio vectorial de $R^3$. Justifique mediante el criterio de subespacio:
+
+- $W_1=\{(x,y,z)\in R^3: 3x+2y-z=0\}$.
+- $W_2=\{(x,y,z)\in R^3: yz=0\}$.
+
+## 
+#### W1 es un subespacio
+Tomemos $u=(x_1,y_1,z_1)$ y $v=(x_2,y_2,z_2)\in W_1$, y sean $\alpha,\beta\in R$. Entonces
+$$3(\alpha x_1+\beta x_2)+2(\alpha y_1+\beta y_2)-(\alpha z_1+\beta z_2)$$
+$$=\alpha(3x_1+2y_1-z_1)+\beta(3x_2+2y_2-z_2)=0.$$
+Así, $\alpha u+\beta v\in W_1$. Como además $(0,0,0)\in W_1$, concluimos que $W_1$ es un subespacio de $R^3$.
+
+## 
+#### W2 no es un subespacio
+Los vectores $(0,1,0)$ y $(0,0,1)$ pertenecen a $W_2$, porque en ambos $yz=0$. Sin embargo,
+$$(0,1,0)+(0,0,1)=(0,1,1)$$
+no pertenece a $W_2$, ya que $yz=1\cdot1=1\neq0$. La suma no es cerrada, por lo tanto $W_2$ no es un subespacio.
+
+## Problema 3
+Considere los siguientes conjuntos en espacios vectoriales:
+
+- En $M_{2\times2}(R)$, considere $W_1=\left\{\begin{pmatrix}a&b\\c&d\end{pmatrix}\in M_{2\times2}(R): a-d=0\right\}$. Demuestre que $W_1$ es un subespacio y describa la forma general de sus elementos.
+- En $P_2[R]$, considere $W_2=\{p(x)\in P_2[R]: p(-1)=0\}$. Pruebe que $W_2$ es un subespacio vectorial.
+
+## 
+#### W1 es un subespacio
+La condición $a-d=0$ significa $a=d$, así que los elementos de $W_1$ tienen la forma
+$$\begin{pmatrix}a&b\\c&a\end{pmatrix}.$$
+Si $A=\begin{pmatrix}a_1&b_1\\c_1&a_1\end{pmatrix}$ y $B=\begin{pmatrix}a_2&b_2\\c_2&a_2\end{pmatrix}$ pertenecen a $W_1$, entonces
+$$\alpha A+\beta B=\begin{pmatrix}\alpha a_1+\beta a_2&\alpha b_1+\beta b_2\\ \alpha c_1+\beta c_2&\alpha a_1+\beta a_2\end{pmatrix}\in W_1.$$
+La diagonal sigue siendo igual. Además la matriz nula pertenece a $W_1$, por lo tanto $W_1$ es un subespacio.
+
+## 
+#### W2 es un subespacio
+Un polinomio general de $P_2[R]$ es $p(x)=a+bx+cx^2$. Si $p,q\in W_2$, entonces $p(-1)=0$ y $q(-1)=0$, por lo que
+$$(\alpha p+\beta q)(-1)=\alpha p(-1)+\beta q(-1)=0,$$
+es decir, $\alpha p+\beta q\in W_2$. Como el polinomio nulo también cumple $p(-1)=0$, concluimos que $W_2$ es un subespacio.
+
+La condición $a-b+c=0$ da $b=a+c$, así que
+$$W_2=\operatorname{span}\{1+x,\;x+x^2\}.$$
+
+## Problema 4
+Dados los vectores en $R^3$:
+$$v_1=(1,2,1), \qquad v_2=(3,-1,2), \qquad w_1=(4,1,2), \qquad w_2=(11,1,8).$$
+Realice cada uno de los siguientes pasos:
+
+- Determine si $w_1$ pertenece a $\operatorname{span}\{v_1,v_2\}$.
+- Determine si $w_2$ pertenece a $\operatorname{span}\{v_1,v_2\}$ y, en caso afirmativo, halle los escalares.
+
+## 
+#### El vector w1 no pertenece al span
+Buscamos $\alpha,\beta$ tales que $\alpha v_1+\beta v_2=w_1$:
+$$\alpha(1,2,1)+\beta(3,-1,2)=(4,1,2).$$
+Igualando componente a componente:
+$$\begin{cases}\alpha+3\beta=4\\ 2\alpha-\beta=1\\ \alpha+2\beta=2\end{cases}$$
+De la primera ecuación $\alpha=4-3\beta$. Sustituyendo en la segunda:
+$$2(4-3\beta)-\beta=1 \implies 8-7\beta=1 \implies \beta=1, \quad \alpha=1.$$
+Pero la tercera ecuación da $\alpha+2\beta=1+2=3\neq2$. El sistema es incompatible, por lo tanto $w_1\notin\operatorname{span}\{v_1,v_2\}$.
+
+## 
+#### El vector w2 sí pertenece al span
+Buscamos $\alpha,\beta$ tales que $\alpha v_1+\beta v_2=w_2$:
+$$\begin{cases}\alpha+3\beta=11\\ 2\alpha-\beta=1\\ \alpha+2\beta=8\end{cases}$$
+De la primera ecuación $\alpha=11-3\beta$. Sustituyendo en la segunda:
+$$2(11-3\beta)-\beta=1 \implies 22-7\beta=1 \implies \beta=3, \quad \alpha=2.$$
+Comprobamos la tercera: $\alpha+2\beta=2+6=8$. Por lo tanto
+$$w_2=2v_1+3v_2,$$
+es decir, $w_2\in\operatorname{span}\{v_1,v_2\}$.
+
+## Problema 5
+Considere el conjunto de vectores en $R^3$:
+$$S=\{(2,1,1),\;(1,-1,2),\;(4,-1,5)\}.$$
+Realice cada uno de los siguientes pasos:
+
+- Determine, mediante la definición de combinación lineal nula, si $S$ es LI o LD.
+- Si el conjunto es LD, escriba uno de los vectores como combinación lineal de los demás.
+
+## 
+#### Planteamiento
+Buscamos escalares $c_1,c_2,c_3$ tales que
+$$c_1(2,1,1)+c_2(1,-1,2)+c_3(4,-1,5)=(0,0,0).$$
+Igualando componente a componente:
+$$\begin{cases}2c_1+c_2+4c_3=0\\ c_1-c_2-c_3=0\\ c_1+2c_2+5c_3=0\end{cases}$$
+
+#### Resolución
+De la segunda ecuación, $c_1=c_2+c_3$. Sustituyendo en la primera:
+$$2(c_2+c_3)+c_2+4c_3=3c_2+6c_3=0 \implies c_2=-2c_3.$$
+Entonces $c_1=-2c_3+c_3=-c_3$. La tercera ecuación se satisface automáticamente:
+$$-c_3+2(-2c_3)+5c_3=0.$$
+
+## 
+Con $c_3=-1$ obtenemos $c_1=1$ y $c_2=2$, una solución no trivial. Por lo tanto $S$ es **linealmente dependiente**.
+
+Además,
+$$v_1+2v_2-v_3=0 \implies v_3=v_1+2v_2.$$
+Comprobamos:
+$$(2,1,1)+2(1,-1,2)=(2,1,1)+(2,-2,4)=(4,-1,5).$$
+
+## Problema 6
+Considere el conjunto de vectores
+$$L_p=\{(1,p,0),\;(0,1,p),\;(p,0,1)\}\subset R^3,$$
+donde $p\in R$ es un parámetro real. Realice cada uno de los siguientes pasos:
+
+- Determine para qué valores de $p$ el conjunto $L_p$ es linealmente independiente.
+- Determine para qué valores de $p$ el conjunto $L_p$ constituye una base de $R^3$.
+
+## 
+#### Determinante
+Como son tres vectores de $R^3$, formamos la matriz con ellos como filas y calculamos su determinante:
+$$A=\begin{pmatrix}1&p&0\\ 0&1&p\\ p&0&1\end{pmatrix}.$$
+Expandiendo por la primera fila:
+$$\det(A)=1\begin{vmatrix}1&p\\0&1\end{vmatrix}-p\begin{vmatrix}0&p\\p&1\end{vmatrix}+0=1(1)-p(0-p^2)=1+p^3.$$
+Factorizando,
+$$\det(A)=p^3+1=(p+1)(p^2-p+1).$$
+
+#### Conclusión
+El único valor real que anula el determinante es $p=-1$. Por lo tanto:
+
+- $L_p$ es linealmente independiente si y solo si $p\neq-1$.
+- Como son tres vectores en $R^3$, $L_p$ es una base de $R^3$ exactamente para $p\neq-1$.
+
+# Gracias por su atención
