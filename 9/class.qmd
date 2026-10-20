@@ -1,0 +1,187 @@
+---
+title: "Matriz de cambio de base y vectores coordenados"
+author: "Flavio Jara L."
+format:
+  revealjs:
+      transition: zoom
+      html-math-method: katex
+include-in-header:
+  - text: |
+      <style>
+      p,ul {
+        font-size: 0.70em;
+      }
+      </style>
+---
+
+## Objetivos de la clase
+Al finalizar, el estudiante será capaz de:
+
+- Representar un vector mediante coordenadas relativas a una base.
+- Construir la matriz de coordenadas $P_B$ y usarla para obtener $[v]_B$.
+- Construir la matriz de cambio de base $M_{C\leftarrow B}$ e interpretar su dirección.
+- Decidir cuándo una familia con parámetro es una base.
+
+## Recordatorio: base
+Una familia ordenada $B=(b_1,\dots,b_n)$ es una **base** de $R^n$ si sus vectores son linealmente independientes y generan $R^n$.
+
+Si formamos la matriz con los vectores como columnas,
+$$P_B=\begin{pmatrix}|&&|\\ b_1&\cdots&b_n\\ |&&|\end{pmatrix},$$
+entonces
+$$B \text{ es base} \iff \det(P_B)\neq 0.$$
+
+## Vector coordenado
+Si $B=(b_1,\dots,b_n)$ es una base de $R^n$, todo vector $v$ se escribe de manera **única** como
+$$v=c_1b_1+c_2b_2+\dots+c_nb_n.$$
+El **vector coordenado** de $v$ respecto de $B$ es
+$$[v]_B=\begin{pmatrix}c_1\\ c_2\\ \vdots\\ c_n\end{pmatrix}.$$
+
+Los coeficientes dependen de la base elegida y del orden de sus vectores.
+
+## Ejemplo
+Sea
+$$B=\{(2,1),(1,2)\}, \qquad v=(7,5).$$
+En la base canónica $E=\{(1,0),(0,1)\}$,
+$$[v]_E=\begin{pmatrix}7\\ 5\end{pmatrix}.$$
+Buscamos $a,b$ tales que
+$$a(2,1)+b(1,2)=(7,5).$$
+
+##
+Igualando componentes:
+$$\begin{cases}2a+b=7\\ a+2b=5\end{cases}$$
+De la primera ecuación $b=7-2a$. Sustituyendo en la segunda:
+$$a+2(7-2a)=5 \implies -3a=-9 \implies a=3, \quad b=1.$$
+Por lo tanto
+$$[v]_B=\begin{pmatrix}3\\ 1\end{pmatrix}, \qquad 3(2,1)+1(1,2)=(7,5).$$
+
+## Ejercicio 1
+Sea
+$$B=\{(3,2),(1,1)\}, \qquad v=(11,7).$$
+Realice cada uno de los siguientes pasos:
+
+- Verifique que $B$ es una base de $R^2$.
+- Exprese $v$ como combinación lineal de los vectores de $B$.
+- Determine $[v]_B$.
+- Compruebe el resultado.
+
+## 
+#### Verificación de la base
+$$P_B=\begin{pmatrix}3&1\\2&1\end{pmatrix}, \qquad \det(P_B)=3(1)-1(2)=1\neq0.$$
+Por lo tanto $B$ es una base de $R^2$.
+
+## Coordenadas
+Buscamos $a,b$ tales que
+$$a(3,2)+b(1,1)=(11,7).$$
+Igualando componentes:
+$$\begin{cases}3a+b=11\\ 2a+b=7\end{cases}$$
+Restando la segunda ecuación a la primera:
+$$a=4.$$
+
+##
+Sustituyendo en la segunda:
+$$2(4)+b=7 \implies b=-1.$$
+Así,
+$$[v]_B=\begin{pmatrix}4\\-1\end{pmatrix}.$$
+Comprobación: $4(3,2)-1(1,1)=(12,8)-(1,1)=(11,7)$.
+
+## Matriz de coordenadas
+Si $B=(b_1,\dots,b_n)$ es una base, todo vector se reconstruye multiplicando la matriz de base por su vector coordenado:
+$$v=P_B[v]_B.$$
+
+## Inversa
+Usualmente conocemos $v$ y queremos $[v]_B$. Eso significa resolver
+$$P_B[v]_B=v$$
+para el vector desconocido $[v]_B$.
+
+Como $B$ es base, $P_B$ es invertible; multiplicando por $P_B^{-1}$ por la izquierda se obtiene
+$$[v]_B=P_B^{-1}v.$$
+
+## Con el ejercicio anterior
+Si queremos las coordenadas de $v=(11,7)$ en la base $B=\{(3,2),(1,1)\}$. Veamos qué hace cada paso y por qué.
+
+#### Paso 1: armar la matriz de base
+Colocamos los vectores de $B$ como columnas:
+$$P_B=\begin{pmatrix}3&1\\2&1\end{pmatrix}.$$
+
+## Paso 2: comprobar que B es base
+$$\det(P_B)=3(1)-1(2)=1\neq0.$$
+
+#### Paso 3: calcular la inversa
+$$P_B^{-1}=\begin{pmatrix}1&-1\\-2&3\end{pmatrix}.$$
+¿Por qué? Conocemos $v$ y queremos $[v]_B$. Como $P_B[v]_B=v$, la inversa permite despejar $[v]_B$, la matriz que deshace el cambio.
+
+## 
+#### Paso 4: multiplicar la inversa por v
+$$[v]_B=P_B^{-1}v=\begin{pmatrix}1&-1\\-2&3\end{pmatrix}\begin{pmatrix}11\\7\end{pmatrix}=\begin{pmatrix}4\\-1\end{pmatrix}.$$
+
+#### Paso 5: comprobar
+$$P_B\begin{pmatrix}4\\-1\end{pmatrix}=\begin{pmatrix}3&1\\2&1\end{pmatrix}\begin{pmatrix}4\\-1\end{pmatrix}=\begin{pmatrix}11\\7\end{pmatrix}=v.$$
+
+## Matriz de cambio de base
+Sean $B$ y $C$ bases ordenadas de $R^n$. Como
+$$v=P_B[v]_B=P_C[v]_C,$$
+multiplicando por $P_C^{-1}$:
+$$[v]_C=P_C^{-1}P_B[v]_B.$$
+La **matriz de cambio de base** de $B$ a $C$ es
+$$M_{C\leftarrow B}=P_C^{-1}P_B.$$
+
+##
+Recibe coordenadas en $B$ y entrega coordenadas en $C$. Sus columnas son las coordenadas de los vectores de $B$ en la base $C$:
+$$M_{C\leftarrow B}=\begin{pmatrix}|&&|\\ [b_1]_C&\cdots&[b_n]_C\\ |&&|\end{pmatrix}.$$
+
+## Ejemplo
+Sean
+$$B=\{(2,1),(1,2)\}, \qquad C=\{(1,1),(1,0)\}.$$
+Las matrices de base son
+$$P_B=\begin{pmatrix}2&1\\1&2\end{pmatrix}, \qquad P_C=\begin{pmatrix}1&1\\1&0\end{pmatrix}, \qquad P_C^{-1}=\begin{pmatrix}0&1\\1&-1\end{pmatrix}.$$
+Si queremos calcular la matriz cambio de base de B a C:
+
+##
+$$M_{C\leftarrow B}=P_C^{-1}P_B=\begin{pmatrix}0&1\\1&-1\end{pmatrix}\begin{pmatrix}2&1\\1&2\end{pmatrix}=\begin{pmatrix}1&2\\1&-1\end{pmatrix}.$$
+Si $[v]_B=(3,1)^T$, entonces
+$$[v]_C=\begin{pmatrix}1&2\\1&-1\end{pmatrix}\begin{pmatrix}3\\1\end{pmatrix}=\begin{pmatrix}5\\2\end{pmatrix}.$$
+Comprobación: $5(1,1)+2(1,0)=(7,5)$, el mismo vector.
+
+## Propiedades de las transiciones
+Para bases $A,B,C$ de $R^n$:
+
+- $M_{B\leftarrow B}=I$.
+- $M_{B\leftarrow C}\,M_{C\leftarrow B}=I$.
+- $M_{A\leftarrow C}\,M_{C\leftarrow B}=M_{A\leftarrow B}$.
+
+
+## Ejercicio 2
+Sean
+$$B=\{(2,1),(3,2)\}, \qquad C=\{(1,1),(2,1)\}.$$
+Se sabe que
+$$[v]_B=\begin{pmatrix}1\\2\end{pmatrix}.$$
+Realice cada uno de los siguientes pasos:
+
+- Verifique que $B$ y $C$ son bases de $R^2$.
+- Determine $[v]_C$.
+- Compruebe el resultado en coordenadas canónicas.
+
+## 
+#### Verificación de las bases
+$$P_B=\begin{pmatrix}2&3\\1&2\end{pmatrix}, \qquad \det(P_B)=2(2)-3(1)=1\neq0,$$
+$$P_C=\begin{pmatrix}1&2\\1&1\end{pmatrix}, \qquad \det(P_C)=1(1)-2(1)=-1\neq0.$$
+Por lo tanto, $B$ y $C$ son bases de $R^2$.
+
+## Matriz de cambio de base
+Como $\det(P_C)=-1$,
+$$P_C^{-1}=\begin{pmatrix}-1&2\\1&-1\end{pmatrix}.$$
+Entonces
+$$M_{C\leftarrow B}=P_C^{-1}P_B=\begin{pmatrix}-1&2\\1&-1\end{pmatrix}\begin{pmatrix}2&3\\1&2\end{pmatrix}=\begin{pmatrix}0&1\\1&1\end{pmatrix}.$$
+
+## 
+#### Coordenadas en C
+$$[v]_C=M_{C\leftarrow B}[v]_B=\begin{pmatrix}0&1\\1&1\end{pmatrix}\begin{pmatrix}1\\2\end{pmatrix}=\begin{pmatrix}2\\3\end{pmatrix}.$$
+
+#### Comprobación
+Desde $B$:
+$$v=1(2,1)+2(3,2)=(2,1)+(6,4)=(8,5).$$
+Desde $C$:
+$$v=2(1,1)+3(2,1)=(2,2)+(6,3)=(8,5).$$
+Ambos procedimientos representan el mismo vector.
+
+# Gracias por su atención
