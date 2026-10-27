@@ -1,0 +1,234 @@
+---
+title: "Solución Pauta PR2"
+author: "Flavio Jara L."
+format:
+  revealjs:
+      transition: zoom
+      html-math-method: katex
+include-in-header:
+  - text: |
+      <style>
+      p,ul {
+        font-size: 0.70em;
+      }
+      </style>
+---
+## Pregunta 1
+Sea $P_2(R)$ el espacio vectorial de los polinomios reales de grado a lo más dos. Considere los conjuntos
+$$S=\{p(x)=ax^2+bx+c\in P_2(R): p(0)=0\},$$
+$$L=\{p(x)=ax^2+bx+c\in P_2(R): p(1)=p(-1)\}.$$
+Realice cada uno de los siguientes pasos:
+
+- Demuestre que $S$ es un subespacio vectorial de $P_2(R)$, verificando las propiedades correspondientes.
+- Determine las condiciones que deben cumplir $a,b,c$ para que $p(x)$ pertenezca a $S$ y a $L$, respectivamente.
+- Analice las siguientes afirmaciones y determine cuáles son verdaderas:
+
+  - **I.** Si $p(x)\in S\cap L$, entonces $p(x)=\lambda x^2$, $\lambda\in R$.
+  - **II.** El polinomio $p(x)=2x^2+3x$ pertenece a $S$.
+  - **III.** La dimensión del subespacio $S$ es igual a $1$.
+
+## Pregunta 1: S es un subespacio
+#### Polinomio nulo
+El polinomio nulo es $p_0(x)=0$. Como
+$$p_0(0)=0,$$
+se concluye que $p_0\in S$.
+
+#### Cerradura bajo la suma
+Sean $p,q\in S$. Entonces $p(0)=0$ y $q(0)=0$. Por lo tanto,
+$$(p+q)(0)=p(0)+q(0)=0+0=0,$$
+es decir, $p+q\in S$.
+
+##
+
+#### Cerradura bajo el producto por escalar
+Sea $p\in S$ y $\lambda\in R$. Entonces
+$$(\lambda p)(0)=\lambda\,p(0)=\lambda\cdot 0=0,$$
+por lo tanto $\lambda p\in S$.
+
+Como se cumplen las tres propiedades, $S$ es un subespacio de $P_2(R)$.
+
+## Pregunta 1: condiciones de pertenencia
+Sea $p(x)=ax^2+bx+c$.
+
+#### Pertenece a S
+Evaluamos en $x=0$:
+$$p(0)=c.$$
+Por lo tanto,
+$$p\in S \iff c=0,$$
+es decir, $S=\{ax^2+bx: a,b\in R\}=\operatorname{span}\{x,x^2\}$.
+
+
+##
+
+#### Pertenece a L
+Evaluamos en $x=1$ y en $x=-1$:
+$$p(1)=a+b+c, \qquad p(-1)=a-b+c.$$
+La condición $p(1)=p(-1)$ implica
+$$a+b+c=a-b+c \implies 2b=0 \implies b=0.$$
+Por lo tanto, $L=\{ax^2+c: a,c\in R\}=\operatorname{span}\{1,x^2\}$.
+
+## Pregunta 1: análisis de las afirmaciones
+#### Afirmación I
+**I.** Si $p(x)\in S\cap L$, entonces $p(x)=\lambda x^2$, $\lambda\in R$.
+
+Si $p\in S\cap L$, deben cumplirse simultáneamente $c=0$ y $b=0$. Así,
+$$p(x)=ax^2,$$
+es decir, $S\cap L=\operatorname{span}\{x^2\}$. La afirmación es **verdadera**.
+
+##
+#### Afirmación II
+**II.** El polinomio $p(x)=2x^2+3x$ pertenece a $S$.
+
+Para $p(x)=2x^2+3x$ se tiene
+$$p(0)=2(0)^2+3(0)=0,$$
+por lo tanto $p\in S$. La afirmación es **verdadera**.
+
+##
+#### Afirmación III
+**III.** La dimensión del subespacio $S$ es igual a $1$.
+
+Como $S=\operatorname{span}\{x,x^2\}$ y los polinomios $x$ y $x^2$ son linealmente independientes,
+$$\dim(S)=2\neq 1.$$
+La afirmación es **falsa**.
+
+**Conclusión:** solo I y II son verdaderas, por lo que la alternativa correcta es la **C**.
+
+## Pregunta 2
+En el espacio vectorial $M_{2\times2}(R)$ se definen las matrices
+$$A=\begin{pmatrix}2&1\\3&-1\end{pmatrix}, \qquad B=\begin{pmatrix}1&3\\-2&2\end{pmatrix}, \qquad C=\begin{pmatrix}1&-7\\12&-8\end{pmatrix}.$$
+Escriba $C$ como combinación lineal de $A$ y $B$, de forma ordenada y detallada.
+
+## Pregunta 2: planteamiento
+Construimos la combinación lineal
+$$C=\alpha A+\beta B.$$
+Sustituyendo las matrices:
+$$\begin{pmatrix}1&-7\\12&-8\end{pmatrix}=\alpha\begin{pmatrix}2&1\\3&-1\end{pmatrix}+\beta\begin{pmatrix}1&3\\-2&2\end{pmatrix}.$$
+Igualando entrada por entrada:
+$$\begin{cases}2\alpha+\beta=1\\ \alpha+3\beta=-7\\ 3\alpha-2\beta=12\\ -\alpha+2\beta=-8\end{cases}$$
+
+## Pregunta 2: resolución
+De la primera ecuación,
+$$\beta=1-2\alpha.$$
+Sustituyendo en la segunda:
+$$\alpha+3(1-2\alpha)=-7 \implies \alpha+3-6\alpha=-7 \implies -5\alpha=-10 \implies \alpha=2.$$
+Entonces
+$$\beta=1-2(2)=-3.$$
+
+##
+
+#### Comprobación en las otras dos ecuaciones
+$$3(2)-2(-3)=6+6=12, \qquad -(2)+2(-3)=-2-6=-8.$$
+Ambas se cumplen. Por lo tanto,
+$$C=2A-3B.$$
+Verificación:
+$$2\begin{pmatrix}2&1\\3&-1\end{pmatrix}-3\begin{pmatrix}1&3\\-2&2\end{pmatrix}=\begin{pmatrix}4&2\\6&-2\end{pmatrix}+\begin{pmatrix}-3&-9\\6&-6\end{pmatrix}=\begin{pmatrix}1&-7\\12&-8\end{pmatrix}=C.$$
+
+## Pregunta 3
+Considere el conjunto de vectores de $R^3$:
+$$S=\{(1,2,1),(2,1,0),(k,3,2)\}, \qquad k\in R.$$
+Realice cada uno de los siguientes pasos:
+
+- Determine los valores de $k$ para los cuales $S$ es linealmente independiente, justificando algebraicamente.
+- Para el valor de $k$ que hace a $S$ linealmente dependiente, establezca una relación de combinación lineal entre sus vectores.
+- Analice las siguientes afirmaciones, justificando cada una:
+
+  - **I.** Si $k=4$, el conjunto $S$ es linealmente dependiente.
+  - **II.** Si $k\neq4$, los vectores de $S$ forman una base de $R^3$.
+  - **III.** Para cualquier valor de $k$, los vectores de $S$ generan $R^3$.
+
+## Pregunta 3: análisis del parámetro
+Sean
+$$v_1=(1,2,1), \qquad v_2=(2,1,0), \qquad v_3=(k,3,2).$$
+Construimos la matriz con los vectores como columnas:
+$$A=\begin{pmatrix}1&2&k\\ 2&1&3\\ 1&0&2\end{pmatrix}.$$
+
+##
+
+Calculamos el determinante expandiendo por la primera fila:
+$$\det(A)=1\begin{vmatrix}1&3\\0&2\end{vmatrix}-2\begin{vmatrix}2&3\\1&2\end{vmatrix}+k\begin{vmatrix}2&1\\1&0\end{vmatrix}$$
+$$=1(2)-2(4-3)+k(0-1)=2-2-k=-k.$$
+Los vectores son linealmente independientes si y solo si $\det(A)\neq0$. Por lo tanto,
+$$k\neq0 \implies S \text{ es LI}, \qquad k=0 \implies S \text{ es LD}.$$
+
+## Pregunta 3: relación de dependencia
+Para $k=0$, los vectores son
+$$v_1=(1,2,1), \qquad v_2=(2,1,0), \qquad v_3=(0,3,2).$$
+Buscamos $\alpha,\beta$ tales que $v_3=\alpha v_1+\beta v_2$:
+$$\alpha(1,2,1)+\beta(2,1,0)=(0,3,2).$$
+Igualando componentes:
+$$\begin{cases}\alpha+2\beta=0\\ 2\alpha+\beta=3\\ \alpha=2\end{cases}$$
+
+##
+De la tercera ecuación, $\alpha=2$. Sustituyendo en la primera:
+$$2+2\beta=0 \implies \beta=-1.$$
+Comprobamos la segunda: $2(2)+(-1)=3$. Por lo tanto,
+$$v_3=2v_1-v_2.$$
+Esta relación no trivial demuestra que los vectores son linealmente dependientes.
+
+## Pregunta 3: análisis de las afirmaciones
+#### Afirmación I
+**I.** Si $k=4$, el conjunto $S$ es linealmente dependiente.
+
+Si $k=4$, entonces
+$$\det(A)=-4\neq0,$$
+por lo que los vectores son linealmente **independientes**, no dependientes. La afirmación es **falsa**.
+
+##
+
+#### Afirmación II
+**II.** Si $k\neq4$, los vectores de $S$ forman una base de $R^3$.
+
+La condición $k\neq4$ no garantiza que $S$ sea base: por ejemplo, para $k=0$ se tiene $\det(A)=0$, los vectores son LD y no forman una base. La afirmación es **falsa**.
+
+##
+
+#### Afirmación III
+**III.** Para cualquier valor de $k$, los vectores de $S$ generan $R^3$.
+
+Para $k=0$ los vectores son linealmente dependientes, por lo que no pueden generar todo $R^3$. La afirmación es **falsa**.
+
+**Conclusión:** I falsa, II falsa, III falsa.
+
+## Pregunta 4
+Considere el subespacio de $R^4$:
+$$W=\{(x,y,z,w)\in R^4: x+y+z-w=0,\; 2x+y+w=0\}.$$
+Realice cada uno de los siguientes pasos:
+
+- Determine un conjunto generador de $W$.
+- A partir del generador, determine una base de $W$, justificando la independencia lineal.
+- Concluya la dimensión de $W$.
+
+## Pregunta 4: reducción del sistema
+Escribimos la matriz de coeficientes:
+$$\begin{pmatrix}1&1&1&-1\\ 2&1&0&1\end{pmatrix}$$
+Eliminamos la primera columna en la segunda fila:
+$$F_2 \leftarrow F_2-2F_1 \implies \begin{pmatrix}1&1&1&-1\\ 0&-1&-2&3\end{pmatrix}$$
+Normalizamos la segunda fila:
+$$F_2 \leftarrow -F_2 \implies \begin{pmatrix}1&1&1&-1\\ 0&1&2&-3\end{pmatrix}$$
+
+##
+Eliminamos hacia arriba:
+$$F_1 \leftarrow F_1-F_2 \implies \begin{pmatrix}1&0&-1&2\\ 0&1&2&-3\end{pmatrix}$$
+Obtenemos
+$$x-z+2w=0, \qquad y+2z-3w=0,$$
+es decir,
+$$x=z-2w, \qquad y=-2z+3w.$$
+
+## Pregunta 4: generador, base y dimensión
+#### Conjunto generador
+Reemplazando $x$ e $y$:
+$$(x,y,z,w)=(z-2w,\,-2z+3w,\,z,\,w).$$
+Separando según los parámetros libres $z$ y $w$:
+$$(x,y,z,w)=z(1,-2,1,0)+w(-2,3,0,1).$$
+Por lo tanto,
+$$W=\operatorname{span}\{(1,-2,1,0),\,(-2,3,0,1)\}.$$
+
+##
+
+#### Independencia lineal
+Si $(1,-2,1,0)=\alpha(-2,3,0,1)$, entonces la tercera coordenada da $1=0$, lo cual es contradictorio. Por lo tanto, los vectores no son múltiplos escalares y son linealmente independientes.
+
+#### Base y dimensión
+$$B=\{(1,-2,1,0),\,(-2,3,0,1)\}, \qquad \dim(W)=2.$$
+
+# Gracias por su atención
