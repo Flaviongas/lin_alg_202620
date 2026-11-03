@@ -2,16 +2,7 @@
 title: "Solución Pauta PR2"
 author: "Flavio Jara L."
 format:
-  revealjs:
-      transition: zoom
-      html-math-method: katex
-include-in-header:
-  - text: |
-      <style>
-      p,ul {
-        font-size: 0.70em;
-      }
-      </style>
+  html
 ---
 ## Pregunta 1
 Sea $P_2(R)$ el espacio vectorial de los polinomios reales de grado a lo más dos. Considere los conjuntos

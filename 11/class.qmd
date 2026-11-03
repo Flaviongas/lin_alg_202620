@@ -1,0 +1,213 @@
+---
+title: "Ortogonalización, ortonormalización y Gram–Schmidt"
+author: "Flavio Jara L."
+format:
+  revealjs:
+      transition: zoom
+      html-math-method: katex
+include-in-header:
+  - text: |
+      <style>
+      p,ul {
+        font-size: 0.70em;
+      }
+      </style>
+---
+
+## Objetivos de la clase
+Al finalizar, el estudiante será capaz de:
+
+- Identificar conjuntos ortogonales y ortonormales.
+- Calcular la proyección ortogonal de un vector sobre otro.
+- Aplicar el proceso de Gram–Schmidt para ortogonalizar una base.
+- Normalizar los vectores obtenidos para construir una base ortonormal.
+- Verificar la ortogonalidad y la norma de los resultados.
+
+## Recordatorio: producto interno y norma
+Para $u=(u_1,\dots,u_n)$ y $v=(v_1,\dots,v_n)$ en $R^n$:
+$$u\cdot v=\sum_{i=1}^{n}u_iv_i, \qquad \|u\|=\sqrt{u\cdot u}.$$
+Dos vectores son **ortogonales** si
+$$u\perp v \iff u\cdot v=0.$$
+
+##
+
+#### Ejemplo
+Para $u=(2,1,-1)$ y $v=(1,-3,-1)$:
+$$u\cdot v=2(1)+1(-3)+(-1)(-1)=2-3+1=0.$$
+Por lo tanto $u\perp v$, aunque
+$$\|u\|=\sqrt{6}\neq1, \qquad \|v\|=\sqrt{11}\neq1.$$
+La ortogonalidad no exige que los vectores sean unitarios.
+
+## Proyección ortogonal
+Sean $a\neq0$ y $b$ vectores de $R^n$. La **proyección ortogonal** de $b$ sobre $a$ es
+$$\operatorname{proj}_a(b)=\dfrac{b\cdot a}{a\cdot a}\,a.$$
+Esta proyección es la parte de $b$ que va en la dirección de $a$.
+
+El **residuo** es
+$$b-\operatorname{proj}_a(b),$$
+y siempre es perpendicular a $a$:
+$$(b-\operatorname{proj}_a(b))\cdot a=0.$$
+
+
+## Ejemplo de proyección
+Sean
+$$a=(2,1), \qquad b=(7,1).$$
+Calculamos
+$$b\cdot a=7(2)+1(1)=15, \qquad a\cdot a=2^2+1^2=5.$$
+Entonces
+$$\operatorname{proj}_a(b)=\dfrac{15}{5}(2,1)=3(2,1)=(6,3).$$
+
+##
+El residuo es
+$$b-\operatorname{proj}_a(b)=(7,1)-(6,3)=(1,-2).$$
+Comprobamos la perpendicularidad:
+$$(1,-2)\cdot(2,1)=2-2=0.$$
+
+## Ejercicio de proyección 1
+Sean
+$$a=(2,3), \qquad b=(7,4).$$
+Realice cada uno de los siguientes pasos:
+
+- Calcule $\operatorname{proj}_a(b)$.
+- Determine el residuo $b-\operatorname{proj}_a(b)$.
+- Compruebe que el residuo es perpendicular a $a$.
+
+## 
+#### Proyección
+$$b\cdot a=7(2)+4(3)=14+12=26, \qquad a\cdot a=2^2+3^2=13.$$
+$$\operatorname{proj}_a(b)=\dfrac{26}{13}(2,3)=2(2,3)=(4,6).$$
+
+#### Residuo y comprobación
+$$b-\operatorname{proj}_a(b)=(7,4)-(4,6)=(3,-2).$$
+$$(3,-2)\cdot(2,3)=6-6=0.$$
+Por lo tanto, el residuo es perpendicular a $a$.
+
+## Ejercicio de proyección 2
+Sean
+$$a=(1,2,2), \qquad b=(4,4,3).$$
+Realice cada uno de los siguientes pasos:
+
+- Calcule $\operatorname{proj}_a(b)$.
+- Determine el residuo $b-\operatorname{proj}_a(b)$.
+- Compruebe que el residuo es perpendicular a $a$.
+
+## 
+#### Proyección
+$$b\cdot a=4(1)+4(2)+3(2)=4+8+6=18, \qquad a\cdot a=1^2+2^2+2^2=9.$$
+$$\operatorname{proj}_a(b)=\dfrac{18}{9}(1,2,2)=2(1,2,2)=(2,4,4).$$
+
+#### Residuo y comprobación
+$$b-\operatorname{proj}_a(b)=(4,4,3)-(2,4,4)=(2,0,-1).$$
+$$(2,0,-1)\cdot(1,2,2)=2+0-2=0.$$
+Por lo tanto, el residuo es perpendicular a $a$.
+
+## Conjuntos ortogonales y ortonormales
+#### Conjunto ortogonal
+$\{u_1,\dots,u_k\}$ es **ortogonal** si
+$$u_i\cdot u_j=0 \quad\text{para } i\neq j.$$
+
+#### Conjunto ortonormal
+$\{q_1,\dots,q_k\}$ es **ortonormal** si es ortogonal y además todos sus vectores son unitarios:
+$$q_i\cdot q_j=\begin{cases}1, & i=j,\\ 0, & i\neq j.\end{cases}$$
+
+##
+
+#### Ejemplos
+- $(3,0)$ y $(0,-2)$ son ortogonales, pero no unitarios.
+- $\left\{\left(\dfrac{3}{5},\dfrac{4}{5}\right),\left(-\dfrac{4}{5},\dfrac{3}{5}\right)\right\}$ es una base ortonormal de $R^2$.
+
+Un conjunto ortogonal de vectores no nulos siempre es linealmente independiente.
+
+## Gram–Schmidt
+Partimos de vectores linealmente independientes $v_1,\dots,v_k$ y construimos, uno por uno, vectores ortogonales $u_1,\dots,u_k$ que generan el mismo subespacio.
+
+Al nuevo vector $v_j$ le restamos sus proyecciones sobre todos los vectores ya ortogonalizados.
+
+#### Paso 1: ortogonalizar
+$$u_1=v_1,$$
+$$u_2=v_2-\dfrac{v_2\cdot u_1}{u_1\cdot u_1}u_1,$$
+$$u_j=v_j-\sum_{i=1}^{j-1}\dfrac{v_j\cdot u_i}{u_i\cdot u_i}u_i \qquad (j\ge3).$$
+
+##
+#### Paso 2: normalizar
+$$q_i=\dfrac{u_i}{\|u_i\|}, \qquad i=1,\dots,k.$$
+
+Los $q_i$ forman una base ortonormal del mismo subespacio.
+
+## Ejemplo en R2: ortogonalización
+Sean
+$$v_1=(2,1), \qquad v_2=(1,3).$$
+
+#### Primer vector
+$$u_1=v_1=(2,1), \qquad u_1\cdot u_1=2^2+1^2=5.$$
+
+##
+#### Segundo vector
+Restamos a $v_2$ su proyección sobre $u_1$:
+$$u_2=v_2-\dfrac{v_2\cdot u_1}{u_1\cdot u_1}u_1=(1,3)-\dfrac{5}{5}(2,1)=(1,3)-(2,1)=(-1,2).$$
+
+#### Comprobación
+$$u_1\cdot u_2=(2)(-1)+(1)(2)=-2+2=0.$$
+Por lo tanto $u_1$ y $u_2$ son ortogonales.
+
+## Ejemplo en R2: normalización
+Las normas son
+$$\|u_1\|=\sqrt{2^2+1^2}=\sqrt{5}, \qquad \|u_2\|=\sqrt{(-1)^2+2^2}=\sqrt{5}.$$
+Normalizamos:
+$$q_1=\dfrac{1}{\sqrt{5}}(2,1), \qquad q_2=\dfrac{1}{\sqrt{5}}(-1,2).$$
+Por lo tanto,
+$$B=\left\{\dfrac{1}{\sqrt{5}}(2,1),\;\dfrac{1}{\sqrt{5}}(-1,2)\right\}$$
+es una base ortonormal de $R^2$.
+
+## Ejemplo en R3: primeros vectores
+Sean
+$$v_1=(1,1,1), \qquad v_2=(1,0,0), \qquad v_3=(0,1,0).$$
+
+#### Primer vector
+$$u_1=v_1=(1,1,1), \qquad u_1\cdot u_1=3.$$
+
+##
+#### Segundo vector
+Restamos a $v_2$ su proyección sobre $u_1$:
+$$u_2=v_2-\dfrac{v_2\cdot u_1}{u_1\cdot u_1}u_1=(1,0,0)-\dfrac{1}{3}(1,1,1)=\left(\dfrac{2}{3},-\dfrac{1}{3},-\dfrac{1}{3}\right).$$
+Comprobación:
+$$u_1\cdot u_2=\dfrac{2}{3}-\dfrac{1}{3}-\dfrac{1}{3}=0.$$
+
+## Ejemplo en R3: tercer vector
+Calculamos los productos necesarios:
+$$v_3\cdot u_1=1, \qquad v_3\cdot u_2=-\dfrac{1}{3}, \qquad u_2\cdot u_2=\dfrac{2}{3}.$$
+Entonces
+$$u_3=v_3-\dfrac{v_3\cdot u_1}{u_1\cdot u_1}u_1-\dfrac{v_3\cdot u_2}{u_2\cdot u_2}u_2$$
+$$=(0,1,0)-\dfrac{1}{3}(1,1,1)+\dfrac{1}{2}\left(\dfrac{2}{3},-\dfrac{1}{3},-\dfrac{1}{3}\right)=\left(0,\dfrac{1}{2},-\dfrac{1}{2}\right).$$
+Comprobación:
+$$u_3\cdot u_1=0, \qquad u_3\cdot u_2=0.$$
+
+## Ejemplo en R3: normalización
+Las normas son
+$$\|u_1\|=\sqrt{3}, \qquad \|u_2\|=\sqrt{\dfrac{2}{3}}=\dfrac{\sqrt{6}}{3}, \qquad \|u_3\|=\dfrac{1}{\sqrt{2}}=\dfrac{\sqrt{2}}{2}.$$
+Por lo tanto,
+$$q_1=\dfrac{1}{\sqrt{3}}(1,1,1), \qquad q_2=\dfrac{1}{\sqrt{6}}(2,-1,-1), \qquad q_3=\dfrac{1}{\sqrt{2}}(0,1,-1).$$
+Estos tres vectores son unitarios, mutuamente ortogonales y generan el mismo espacio que $v_1,v_2,v_3$; en este caso, todo $R^3$.
+
+## Ejercicio
+Sean
+$$v_1=(2,1,1), \qquad v_2=(1,2,0).$$
+Realice cada uno de los siguientes pasos:
+
+- Calcule $u_1$ y $u_2$ mediante Gram–Schmidt.
+- Compruebe que $u_1\cdot u_2=0$.
+- Obtenga los vectores ortonormales $q_1$ y $q_2$.
+
+## 
+#### Ortogonalización
+$$u_1=v_1=(2,1,1), \qquad u_1\cdot u_1=2^2+1^2+1^2=6.$$
+$$u_2=v_2-\dfrac{v_2\cdot u_1}{u_1\cdot u_1}u_1=(1,2,0)-\dfrac{4}{6}(2,1,1)=\left(-\dfrac{1}{3},\dfrac{4}{3},-\dfrac{2}{3}\right).$$
+Comprobación:
+$$u_1\cdot u_2=-\dfrac{2}{3}+\dfrac{4}{3}-\dfrac{2}{3}=0.$$
+
+##
+#### Normalización
+$$\|u_1\|=\sqrt{6}, \qquad \|u_2\|=\sqrt{\dfrac{7}{3}}=\dfrac{\sqrt{21}}{3}.$$
+$$q_1=\dfrac{1}{\sqrt{6}}(2,1,1), \qquad q_2=\dfrac{1}{\sqrt{21}}(-1,4,-2).$$
+
+# Gracias por su atención
